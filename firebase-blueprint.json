@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user profiles.",
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "full_name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["user_id", "full_name", "email", "role"]
+    },
+    "Case": {
+      "title": "Case",
+      "description": "Primary entity for a redevelopment project.",
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string", "description": "Format BX-0001" },
+        "user_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["new", "evaluating", "qualified", "dropped"] },
+        "stage": { "type": "string", "enum": ["pre-decision", "mid-process", "execution"] },
+        "clarity_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "alignment_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "risk_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "ai_summary": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["case_id", "user_id", "status", "stage", "created_at", "updated_at"]
+    },
+    "CaseSignal": {
+      "title": "Case Signal",
+      "description": "Identified pressure points and triggers for a case.",
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string" },
+        "signals": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["case_id", "signals"]
+    },
+    "CaseLayer": {
+      "title": "Case Layer",
+      "description": "ASSURE protocol layer classification.",
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string" },
+        "alignment_status": { "type": "string", "enum": ["weak", "moderate", "strong"] },
+        "risk_status": { "type": "string", "enum": ["low", "medium", "high"] },
+        "decision_status": { "type": "string", "enum": ["unclear", "partial", "clear"] },
+        "execution_status": { "type": "string", "enum": ["unstable", "controlled", "ready"] }
+      },
+      "required": ["case_id", "alignment_status", "risk_status", "decision_status", "execution_status"]
+    },
+    "CaseActivity": {
+      "title": "Case Activity",
+      "description": "Immutable audit log of events.",
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string" },
+        "event": { "type": "string", "enum": ["created", "ai_processed", "reviewed"] },
+        "actor": { "type": "string", "enum": ["system", "admin"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["case_id", "event", "actor", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "User directory." },
+    "/cases/{caseId}": { "schema": "Case", "description": "Primary decision layer entities." },
+    "/case_signals/{caseId}": { "schema": "CaseSignal", "description": "Extracted signals for each case." },
+    "/case_layers/{caseId}": { "schema": "CaseLayer", "description": "ASSURE protocol metrics." },
+    "/case_activity/{activityId}": { "schema": "CaseActivity", "description": "System-wide audit log." }
+  }
+}

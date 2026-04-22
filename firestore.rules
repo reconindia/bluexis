@@ -1,0 +1,91 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- System Primitives ---
+    
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+
+    // --- Entity Specific Validations ---
+
+    function isValidCase(data) {
+      let requiredFields = ['case_id', 'user_id', 'status', 'stage', 'created_at', 'updated_at'];
+      return data.keys().hasAll(requiredFields)
+        && data.case_id is string && data.case_id.matches('^BX-[0-9]{4}$')
+        && data.user_id is string
+        && data.status in ["new", "evaluating", "qualified", "dropped"]
+        && data.stage in ["pre-decision", "mid-process", "execution"]
+        && (data.get('clarity_score', 0) is number && data.get('clarity_score', 0) >= 0 && data.get('clarity_score', 0) <= 100)
+        && (data.get('alignment_score', 0) is number && data.get('alignment_score', 0) >= 0 && data.get('alignment_score', 0) <= 100)
+        && (data.get('risk_score', 0) is number && data.get('risk_score', 0) >= 0 && data.get('risk_score', 0) <= 100)
+        && data.created_at == request.time || data.created_at == existing().created_at
+        && data.updated_at == request.time;
+    }
+
+    function isValidCaseLayer(data) {
+      return data.keys().hasAll(['case_id', 'alignment_status', 'risk_status', 'decision_status', 'execution_status'])
+        && data.case_id is string
+        && data.alignment_status in ["weak", "moderate", "strong"]
+        && data.risk_status in ["low", "medium", "high"]
+        && data.decision_status in ["unclear", "partial", "clear"]
+        && data.execution_status in ["unstable", "controlled", "ready"];
+    }
+
+    function isValidActivity(data) {
+      return data.keys().hasAll(['case_id', 'event', 'actor', 'timestamp'])
+        && data.case_id is string
+        && data.event in ["created", "ai_processed", "reviewed"]
+        && data.actor in ["system", "admin"]
+        && data.timestamp == request.time;
+    }
+
+    // --- Collection Routes ---
+
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isAdmin();
+    }
+
+    match /cases/{caseId} {
+      allow get: if isSignedIn() && (request.auth.uid == existing().user_id || isAdmin());
+      allow list: if isSignedIn() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && isValidCase(incoming());
+      allow update: if (isAdmin() || (isSignedIn() && request.auth.uid == existing().user_id)) && isValidCase(incoming());
+    }
+
+    match /case_signals/{caseId} {
+      allow get: if isSignedIn() && (exists(/databases/$(database)/documents/cases/$(caseId)) && (get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid || isAdmin()));
+      allow write: if isAdmin();
+    }
+
+    match /case_layers/{caseId} {
+      allow get: if isSignedIn() && (exists(/databases/$(database)/documents/cases/$(caseId)) && (get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid || isAdmin()));
+      allow write: if isAdmin();
+    }
+
+    match /case_activity/{activityId} {
+      allow get: if isSignedIn() && isAdmin();
+      allow create: if (isSignedIn() && isValidActivity(incoming())); // System/Admin can log
+      allow update, delete: if false; // Immutable logs
+    }
+
+    // Reference for rules only
+    match /admins/{userId} {
+      allow read: if isSignedIn();
+    }
+  }
+}
