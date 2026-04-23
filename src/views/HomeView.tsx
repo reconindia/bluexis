@@ -44,7 +44,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             <div className="grid md:grid-cols-12 gap-12 items-end">
               <div className="md:col-span-8">
                 <p className="text-xl md:text-3xl font-light text-ink/80 leading-[1.4] mb-12">
-                  We work with societies, PMCs, and developers to bring clinical clarity to redevelopment—aligning expectations through the <span className="font-bold text-ink border-b-2 border-gold pb-1 px-1">ONESTOP ASSURE™ Protocol</span>.
+                  We work with societies, PMCs, and developers to bring clinical clarity to redevelopment—aligning expectations through the <span className="font-bold text-ink border-b-2 border-gold pb-1 px-1">ASSURE™ Protocol</span>.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6">
                   <button 
@@ -57,7 +57,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     onClick={() => onNavigate('assure')}
                     className="border border-ink/20 px-10 py-5 text-[10px] uppercase tracking-[0.4em] font-black hover:border-gold hover:text-gold transition-all"
                   >
-                    The ONESTOP ASSURE™ System
+                    The ASSURE™ System
                   </button>
                 </div>
               </div>

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { 
   ShieldCheck, 
@@ -24,6 +25,8 @@ interface AssureViewProps {
 }
 
 export default function AssureView({ onNavigate }: AssureViewProps) {
+  const [isQualifiedPMC] = useState(false);
+
   const lifecycle = [
     { name: "Setup", desc: "Establishing the clinical baseline and structural invariants." },
     { name: "Approvals", desc: "Validating regulatory readiness before stakeholder commitment." },
@@ -35,6 +38,13 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
 
   return (
     <div className="flex flex-col scroll-smooth selection:bg-gold selection:text-ink">
+      {/* Structural Notice */}
+      <div className="bg-gold/10 border-b border-gold/20 py-3 px-6 text-center">
+        <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gold">
+          ASSURE™ functions activate only when used with a qualified full-service, multi-speciality PMC. ASSURE™ itself is not a PMC.
+        </p>
+      </div>
+
       {/* 01 COVER / HERO */}
       <section className="min-h-screen py-40 relative flex items-center border-b border-line overflow-hidden bg-paper">
         <div className="absolute inset-0 grid-bg opacity-10" />
@@ -46,7 +56,6 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
           >
             <span className="text-[10px] uppercase tracking-[0.5em] font-black text-gold mb-8 block font-display">System Introduction</span>
             <h1 className="font-display font-bold text-7xl md:text-[140px] leading-[0.8] mb-12 tracking-tighter">
-              ONESTOP <br />
               <span className="font-serif italic font-light text-ink/40">ASSURE™</span>
             </h1>
             <p className="text-2xl md:text-4xl font-light text-ink/80 max-w-4xl mx-auto mb-10 font-serif italic italic-text">
@@ -104,7 +113,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
            <div className="grid lg:grid-cols-2 gap-20">
               <div className="bg-white border border-line p-16 shadow-sm">
                  <span className="text-gold uppercase tracking-[0.3em] font-black text-[9px] mb-12 block">Integration</span>
-                 <h3 className="font-display font-bold text-5xl mb-8 uppercase tracking-tighter">ONESTOP</h3>
+                 <h3 className="font-display font-bold text-5xl mb-8 uppercase tracking-tighter">INTEGRATION</h3>
                  <p className="text-lg font-light text-ink/60 mb-8 leading-relaxed">
                     A single ecosystem of legal, financial, architectural, and engineering expertise. Total integration.
                  </p>
@@ -180,7 +189,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
            <span className="text-[500px] font-display font-black">ASSURE</span>
         </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-           <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-12 block">The ONESTOP Model</span>
+           <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-12 block">The ASSURE™ Model</span>
            
            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-32">
               {[
@@ -237,14 +246,13 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
         </div>
       </section>
 
-      {/* 25-27 THE BACKBONE: ONESTOP PMC */}
+      {/* 25-27 THE BACKBONE: PMC LAYER */}
       <section className="py-40 bg-zinc-50 border-y border-line">
         <div className="max-w-7xl mx-auto px-6">
            <div className="grid lg:grid-cols-2 gap-32 items-center">
               <div>
                 <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-8 block">The Backbone</span>
                 <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-tight mb-12 text-ink">
-                  ONESTOP <br />
                   <span className="not-italic font-display font-bold text-gold">PMC Layer.</span>
                 </h2>
                 <p className="text-xl font-light text-ink/60 mb-12 leading-relaxed">
@@ -280,7 +288,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
         </div>
       </section>
 
-      {/* 28-33 INSTITUTIONAL AUTHORITY: CA RAMESH PRABHU */}
+      {/* 28-33 INSTITUTIONAL AUTHORITY */}
       <section className="py-40 bg-[#FCFAF7] relative overflow-hidden">
         <div className="absolute top-0 right-0 p-20 opacity-5 pointer-events-none select-none">
            <Briefcase className="w-96 h-96" />
@@ -292,7 +300,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                     <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-gold -translate-x-[-10px] -translate-y-[-10px]" />
                     <span className="text-gold uppercase tracking-[0.3em] font-black text-[9px] mb-12 block">Advisory Governance</span>
                     <h3 className="font-serif italic font-light text-5xl md:text-7xl mb-12 text-ink">
-                      Verification Authority.
+                       Verification Authority.
                     </h3>
                     <div className="space-y-8">
                        {[
@@ -310,15 +318,15 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
               </div>
               
               <div className="order-1 lg:order-2">
-                 <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-8 block">The Board</span>
+                 <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-8 block">Strategic Council</span>
                  <h2 className="font-display font-bold text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-12">
-                   CA Ramesh <br />Prabhu.
+                   Institutional <br />Authority.
                  </h2>
                  <p className="text-xl font-light text-ink/70 leading-relaxed mb-12 italic border-l border-gold pl-8">
-                   "Institutional credibility is the foundation of structural stability in redevelopment."
+                   Institutional credibility is the foundation of structural stability in redevelopment excellence.
                  </p>
                  <div className="space-y-4">
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-ink/40">Credential Portfolio:</p>
+                    <p className="text-sm font-medium uppercase tracking-[0.2em] text-ink/40">Collective Expertise:</p>
                     <ul className="grid sm:grid-cols-2 gap-4 text-[11px] font-bold uppercase tracking-widest text-gold text-center">
                        <li className="border border-gold py-3">Housing Policy Expert</li>
                        <li className="border border-gold py-3">MHADA Specialist</li>
@@ -355,8 +363,13 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                  
                  <div className="flex flex-col md:flex-row gap-8">
                     <button 
-                      onClick={() => onNavigate('contact')}
-                      className="bg-paper text-ink px-16 py-6 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-gold transition-all hover:scale-110 shadow-2xl"
+                      onClick={() => isQualifiedPMC && onNavigate('contact')}
+                      disabled={!isQualifiedPMC}
+                      className={`px-16 py-6 text-[10px] uppercase tracking-[0.4em] font-black transition-all shadow-2xl ${
+                        isQualifiedPMC 
+                        ? 'bg-paper text-ink hover:bg-gold hover:scale-110' 
+                        : 'bg-paper/20 text-ink/20 cursor-not-allowed border border-ink/5'
+                      }`}
                     >
                       Begin Structural Mapping
                     </button>
@@ -370,7 +383,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
         </div>
         
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-5 pointer-events-none select-none">
-           <span className="text-[300px] font-display font-black">ONESTOP</span>
+           <span className="text-[300px] font-display font-black">ASSURE</span>
         </div>
       </section>
     </div>
