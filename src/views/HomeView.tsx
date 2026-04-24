@@ -28,15 +28,15 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           >
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 md:mb-24">
               <div className="max-w-4xl">
-                <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-6 block tracking-widest font-sans">Expert Project Advice</span>
-                <h1 className="font-serif italic font-light text-6xl sm:text-7xl md:text-[140px] leading-[0.85] tracking-tight text-ink">
+                <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold-dark mb-6 block tracking-widest font-sans">Expert Project Advice</span>
+                <h1 className="font-serif italic font-light text-5xl sm:text-7xl lg:text-[140px] leading-[0.9] lg:leading-[0.85] tracking-tight text-ink">
                   Redevelopment <br />
-                  <span className="text-gold not-italic font-display font-bold">Decisions</span>
+                  <span className="text-gold-dark not-italic font-display font-bold">Decisions</span>
                 </h1>
               </div>
               <div className="md:w-px h-px md:h-32 bg-line" />
               <div className="max-w-sm">
-                <p className="text-lg font-light text-ink/90 leading-relaxed uppercase tracking-wider italic">
+                <p className="text-base md:text-lg font-light text-ink leading-relaxed uppercase tracking-wider italic">
                   Structured before execution. <br />Aligning members across the decision layer.
                 </p>
               </div>
@@ -44,7 +44,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             
             <div className="grid md:grid-cols-12 gap-12 items-end">
               <div className="md:col-span-8">
-                <p className="text-xl md:text-3xl font-light text-ink/90 leading-[1.4] mb-12">
+                <p className="text-xl md:text-3xl font-light text-ink leading-[1.4] mb-12">
                   We work with societies and developers to bring clear logic to redevelopment—aligning goals through the <span className="font-bold text-ink border-b-2 border-gold pb-1 px-1">ASSURE™ Protocol</span>.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6">
@@ -86,8 +86,8 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                { l: "Alignment Loss", v: "0.0%" }
              ].map((stat, i) => (
                 <div key={i} className="flex flex-col">
-                  <span className="text-xs uppercase tracking-[0.3em] font-bold text-ink/70 mb-2 font-sans">{stat.l}</span>
-                  <span className="font-display text-2xl font-bold tracking-tighter text-gold italic uppercase">{stat.v}</span>
+                  <span className="text-xs uppercase tracking-[0.3em] font-bold text-ink/60 mb-2 font-sans">{stat.l}</span>
+                  <span className="font-display text-2xl font-bold tracking-tighter text-gold-dark italic uppercase">{stat.v}</span>
                 </div>
              ))}
           </div>
@@ -101,7 +101,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           <div className="grid lg:grid-cols-12 gap-20">
             <div className="lg:col-span-12 mb-12">
                <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Project Health Check</span>
-               <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-[1] tracking-tight max-w-4xl">
+               <h2 className="font-serif italic font-light text-4xl sm:text-5xl md:text-8xl leading-[1.1] md:leading-[1] tracking-tight max-w-4xl">
                   Most projects do not fail in construction. <br />
                   <span className="text-paper not-italic uppercase font-display font-bold">They become unstable earlier.</span>
                </h2>
@@ -131,7 +131,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             <div className="lg:col-span-4 flex flex-col justify-center">
               <div className="border-t border-gold pb-12 pt-8">
                 <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-6 italic font-sans">Evaluation:</p>
-                <p className="text-2xl font-light text-paper/90 leading-relaxed mb-8">
+                <p className="text-2xl font-light text-paper leading-relaxed mb-8">
                   These signs indicate the absence of a <span className="text-paper font-medium">structured decision setup</span>.
                 </p>
                 <button 
@@ -152,7 +152,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-20">
             <div className="lg:col-span-12 mb-20 text-center">
-              <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-6 uppercase">Common Problems</h2>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-6 uppercase">Common Problems</h2>
               <p className="text-xs uppercase tracking-[0.5em] font-bold text-gold font-sans">Why Projects Get Stuck</p>
             </div>
             
@@ -164,10 +164,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                  { t: "Pushing for speed over safety", d: "The project is rushed forward without checking if the foundation of the deal is actually solid." }
                ].map((item, i) => (
                  <div key={i} className="flex gap-8 group">
-                   <span className="font-serif italic text-4xl text-gold opacity-70 group-hover:opacity-100 transition-opacity">0{i+1}</span>
+                   <span className="font-serif italic text-4xl text-gold group-hover:opacity-100 transition-opacity">0{i+1}</span>
                    <div>
                      <h3 className="text-2xl font-bold font-display mb-4 tracking-tight">{item.t}</h3>
-                     <p className="text-ink/80 leading-relaxed font-light">{item.d}</p>
+                     <p className="text-ink font-light leading-relaxed">{item.d}</p>
                    </div>
                  </div>
                ))}
@@ -182,10 +182,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           <div className="grid lg:grid-cols-2 gap-24 items-center">
              <div>
                 <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans">Our Position</span>
-                <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-none mb-12">
+                <h2 className="font-serif italic font-light text-4xl sm:text-5xl md:text-8xl leading-none mb-12">
                   The <span className="text-paper not-italic font-display font-bold">Decision</span> Layer.
                 </h2>
-                <div className="space-y-6 text-xl font-light text-paper/70">
+                <div className="space-y-6 text-xl font-light text-paper">
                   <p>Bluexis™ does not replace PMCs, legal advisors, or developers.</p>
                   <p className="text-gold italic border-l border-gold pl-6 py-2 uppercase tracking-[0.2em] font-bold text-xs">It supports them.</p>
                   <p>By implementing a structured decision framework, we ensure that every party works from a foundation of verified alignment and controlled risk.</p>
@@ -193,8 +193,8 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
              </div>
 
              <div className="bg-paper p-12 md:p-20 text-ink shadow-2xl relative">
-                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-gold -translate-x-[-10px] -translate-y-[-10px] pointer-events-none" />
-                <h3 className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-16 block text-center font-sans">Core Rules</h3>
+                <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-gold-dark -translate-x-[-10px] -translate-y-[-10px] pointer-events-none" />
+                <h3 className="text-xs uppercase tracking-[0.4em] font-bold text-gold-dark mb-16 block text-center font-sans">Core Rules</h3>
                 <div className="space-y-12">
                    {[
                      { t: "Clarity before commitment", l: "Alignment" },
@@ -203,8 +203,8 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                      { t: "Readiness before execution", l: "Start" }
                    ].map((item, i) => (
                      <div key={i} className="flex justify-between items-end border-b border-line pb-4">
-                       <span className="text-xl font-bold">{item.t}</span>
-                       <span className="font-serif italic text-gold text-sm opacity-60">{item.l}</span>
+                       <span className="text-xl font-bold text-ink">{item.t}</span>
+                       <span className="font-serif italic text-gold-dark text-sm">{item.l}</span>
                      </div>
                    ))}
                 </div>
@@ -219,11 +219,11 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
            <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-ink">
               <div className="flex items-center gap-8">
                  <div className="w-16 h-16 border border-line flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-8 h-8 text-gold" />
+                    <ShieldCheck className="w-8 h-8 text-gold-dark" />
                  </div>
                  <div>
                     <h3 className="font-display font-bold text-2xl uppercase tracking-tight">Project Management</h3>
-                    <p className="text-sm font-light text-ink/60 uppercase tracking-widest italic leading-relaxed">Member Accountability & Ethical Guidelines</p>
+                    <p className="text-sm font-light text-ink/90 uppercase tracking-widest italic leading-relaxed">Member Accountability & Ethical Guidelines</p>
                  </div>
               </div>
               <button 
@@ -243,10 +243,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       <section id="assure-prev" className="py-40 bg-[#FCFAF7] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-24">
-             <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-8 block font-sans tracking-widest">Protocol Overview</span>
-             <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12">
+             <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold-dark mb-8 block font-sans tracking-widest">Protocol Overview</span>
+             <h2 className="font-display text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter leading-[1] md:leading-[0.9] mb-12 text-ink">
                ASSURE™ System <br />
-               <span className="font-serif italic font-light italic-text text-gold">Architecture.</span>
+               <span className="font-serif italic font-light italic-text text-gold-dark">Architecture.</span>
              </h2>
              <div className="h-[1px] bg-line w-full" />
           </div>
@@ -271,9 +271,9 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               }
             ].map((layer, i) => (
               <div key={i} className="bg-[#FCFAF7] p-12 group hover:bg-ink hover:text-paper transition-all duration-500">
-                <span className="text-gold font-display font-bold text-xs mb-12 block group-hover:scale-110 transition-transform origin-left tracking-widest font-sans uppercase">0{i+1} — LAYER</span>
-                <h3 className="text-2xl font-bold mb-6 font-display group-hover:text-gold transition-colors">{layer.title}</h3>
-                <p className="text-sm font-light leading-relaxed opacity-85 group-hover:opacity-100 transition-opacity">{layer.text}</p>
+                <span className="text-gold-dark font-display font-bold text-xs mb-12 block group-hover:scale-110 transition-transform origin-left tracking-widest font-sans uppercase">0{i+1} — LAYER</span>
+                <h3 className="text-2xl font-bold mb-6 font-display group-hover:text-gold transition-colors text-ink">{layer.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-ink group-hover:text-paper transition-opacity">{layer.text}</p>
               </div>
             ))}
           </div>
@@ -335,7 +335,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
              viewport={{ once: true }}
              transition={{ duration: 1 }}
           >
-            <h2 className="font-serif italic font-light text-5xl md:text-[140px] leading-[0.8] mb-20 tracking-tighter">
+            <h2 className="font-serif italic font-light text-4xl sm:text-5xl lg:text-[140px] leading-[0.9] lg:leading-[0.8] mb-20 tracking-tighter">
               Structure <br />
               <span className="not-italic font-display font-bold text-gold">Commitment.</span>
             </h2>

@@ -10,8 +10,13 @@ service cloud.firestore {
 
     // --- System Primitives ---
     
-    function isSignedIn() { return request.auth != null; }
-    function isAdmin() { return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function isSignedIn() { return request.auth != null && request.auth.token.email_verified == true; }
+    function isAdmin() { 
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'team.bluexis@gmail.com'
+      ); 
+    }
     function incoming() { return request.resource.data; }
     function existing() { return resource.data; }
     
@@ -31,7 +36,7 @@ service cloud.firestore {
         && (data.get('clarity_score', 0) is number && data.get('clarity_score', 0) >= 0 && data.get('clarity_score', 0) <= 100)
         && (data.get('alignment_score', 0) is number && data.get('alignment_score', 0) >= 0 && data.get('alignment_score', 0) <= 100)
         && (data.get('risk_score', 0) is number && data.get('risk_score', 0) >= 0 && data.get('risk_score', 0) <= 100)
-        && data.created_at == request.time || data.created_at == existing().created_at
+        && (data.created_at == request.time || data.created_at == existing().created_at)
         && data.updated_at == request.time;
     }
 
@@ -52,35 +57,69 @@ service cloud.firestore {
         && data.timestamp == request.time;
     }
 
+    function isValidIntake(data) {
+      let requiredFields = ['user_id', 'userType', 'situation', 'created_at'];
+      return data.keys().hasAll(requiredFields)
+        && data.user_id is string && data.user_id == request.auth.uid
+        && data.userType is string && data.userType.size() <= 128
+        && data.situation is string && data.situation.size() <= 128
+        && (data.get('setup', '') is string && data.get('setup', '').size() <= 128)
+        && (data.get('concern', '') is string && data.get('concern', '').size() <= 128)
+        && (data.get('riskScore', 0) is number && data.get('riskScore', 0) >= 0 && data.get('riskScore', 0) <= 100)
+        && data.created_at == request.time;
+    }
+
     // --- Collection Routes ---
+
+    match /intake_evaluations/{evalId} {
+      allow get: if isSignedIn() && (request.auth.uid == resource.data.user_id || isAdmin());
+      allow list: if isSignedIn() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && isValidIntake(incoming());
+      allow update, delete: if isAdmin();
+    }
+
+    match /sessions/{sessionId} {
+      allow get: if isSignedIn() && (request.auth.uid == resource.data.user_id || isAdmin());
+      allow list: if isSignedIn() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && isValidIntake(incoming());
+      allow update, delete: if isAdmin();
+    }
 
     match /users/{userId} {
       allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
       allow create: if isSignedIn() && request.auth.uid == userId;
-      allow update: if isAdmin();
+      allow update: if request.auth.uid == userId || isAdmin();
     }
 
     match /cases/{caseId} {
       allow get: if isSignedIn() && (request.auth.uid == existing().user_id || isAdmin());
       allow list: if isSignedIn() && (resource.data.user_id == request.auth.uid || isAdmin());
-      allow create: if isSignedIn() && isValidCase(incoming());
+      allow create: if isSignedIn() && incoming().user_id == request.auth.uid && isValidCase(incoming());
       allow update: if (isAdmin() || (isSignedIn() && request.auth.uid == existing().user_id)) && isValidCase(incoming());
     }
 
     match /case_signals/{caseId} {
-      allow get: if isSignedIn() && (exists(/databases/$(database)/documents/cases/$(caseId)) && (get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid || isAdmin()));
-      allow write: if isAdmin();
+      function isCaseOwner() {
+        return exists(/databases/$(database)/documents/cases/$(caseId)) && 
+               get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid;
+      }
+      allow get: if isSignedIn() && (isCaseOwner() || isAdmin());
+      allow write: if isAdmin() || (isSignedIn() && isCaseOwner());
     }
 
     match /case_layers/{caseId} {
-      allow get: if isSignedIn() && (exists(/databases/$(database)/documents/cases/$(caseId)) && (get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid || isAdmin()));
-      allow write: if isAdmin();
+      function isCaseOwner() {
+        return exists(/databases/$(database)/documents/cases/$(caseId)) && 
+               get(/databases/$(database)/documents/cases/$(caseId)).data.user_id == request.auth.uid;
+      }
+      allow get: if isSignedIn() && (isCaseOwner() || isAdmin());
+      allow write: if isAdmin() || (isSignedIn() && isCaseOwner() && isValidCaseLayer(incoming()));
     }
 
     match /case_activity/{activityId} {
       allow get: if isSignedIn() && isAdmin();
-      allow create: if (isSignedIn() && isValidActivity(incoming())); // System/Admin can log
-      allow update, delete: if false; // Immutable logs
+      allow create: if (isSignedIn() && isValidActivity(incoming())); 
+      allow update, delete: if false; 
     }
 
     // Reference for rules only

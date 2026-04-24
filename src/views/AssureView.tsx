@@ -62,8 +62,8 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
   return (
     <div className="flex flex-col scroll-smooth selection:bg-gold selection:text-ink">
       {/* Structural Notice */}
-      <div className="bg-gold/5 border-b border-gold/10 py-3 px-6 text-center">
-        <p className="text-xs uppercase tracking-[0.2em] font-bold text-gold/80 font-sans">
+      <div className="bg-gold/10 border-b border-gold/20 py-3 px-6 text-center">
+        <p className="text-xs uppercase tracking-[0.2em] font-bold text-gold-dark font-sans">
           ASSURE™ functions activate only when used with a qualified full-service management partner.
         </p>
       </div>
@@ -78,25 +78,25 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex flex-col mb-16">
-              <span className="text-xs uppercase tracking-[0.5em] font-bold text-gold mb-4 block font-sans tracking-widest">Introduction</span>
-              <p className="text-xs uppercase tracking-[0.2em] font-bold text-ink/40 font-sans border-l border-gold pl-6">
+              <span className="text-xs uppercase tracking-[0.5em] font-bold text-gold-dark mb-4 block font-sans tracking-widest">Introduction</span>
+              <p className="text-xs uppercase tracking-[0.2em] font-bold text-ink/60 font-sans border-l border-gold pl-6">
                 Structured Execution System for Management-led Redevelopment
               </p>
             </div>
             
-            <h1 className="font-display font-bold text-7xl md:text-[160px] leading-[0.8] mb-12 tracking-tighter text-ink">
+            <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-[160px] leading-[0.9] lg:leading-[0.8] mb-12 tracking-tighter text-ink">
               ASSURE™ <br />
-              <span className="font-serif italic font-light text-gold text-4xl md:text-7xl lowercase block mt-8">redevelopment system.</span>
+              <span className="font-serif italic font-light text-gold-dark text-3xl sm:text-4xl md:text-7xl lowercase block mt-8 leading-none">redevelopment system.</span>
             </h1>
 
             <div className="flex flex-col md:flex-row items-center justify-start gap-12 mt-20">
-              <p className="text-2xl font-light text-ink/90 max-w-xl text-center md:text-left font-serif italic leading-relaxed">
+              <p className="text-2xl font-light text-ink max-w-xl text-center md:text-left font-serif italic leading-relaxed">
                 Complete Redevelopment Control. <br />Decisions governed by core internal rules.
               </p>
               <div className="h-px w-24 bg-gold hidden md:block" />
               <div className="flex flex-col items-center md:items-start">
-                <span className="text-xs uppercase tracking-[0.4em] font-bold text-ink/40 mb-2 font-sans tracking-widest">System Status</span>
-                <span className="text-gold font-display font-bold text-xs tracking-widest flex items-center gap-2 font-sans">
+                <span className="text-xs uppercase tracking-[0.4em] font-bold text-ink/60 mb-2 font-sans tracking-widest">System Status</span>
+                <span className="text-gold-dark font-display font-bold text-xs tracking-widest flex items-center gap-2 font-sans">
                   <Activity className="w-3 h-3" /> SYSTEM_ACTIVE
                 </span>
               </div>
@@ -112,7 +112,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
           <div className="grid lg:grid-cols-2 gap-32 items-center">
             <div>
               <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Expert Review</span>
-              <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-[0.9] mb-12">
+              <h2 className="font-serif italic font-light text-4xl sm:text-5xl md:text-8xl leading-[1] md:leading-[0.9] mb-12">
                 Why most projects <br />
                 <span className="not-italic font-display font-bold text-gold tracking-tighter">become unstable.</span>
               </h2>
@@ -129,7 +129,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                  { t: "Latent Risk", d: "Project risks are discovered after irreversible commitment." }
                ].map((point, i) => (
                  <div key={i} className="bg-zinc-950 p-12 group hover:bg-gold hover:text-ink transition-all duration-500">
-                    <span className="text-gold font-display font-bold text-xs mb-8 block group-hover:text-ink/40 transition-colors tracking-widest font-sans">0{i+1}</span>
+                    <span className="text-gold font-display font-bold text-xs mb-8 block group-hover:text-ink/60 transition-colors tracking-widest font-sans">0{i+1}</span>
                     <h3 className="font-display font-bold uppercase tracking-tight mb-4 text-2xl leading-none">{point.t}</h3>
                     <p className="text-sm font-light leading-relaxed opacity-80 group-hover:opacity-100 italic transition-all font-serif">{point.d}</p>
                  </div>
@@ -153,7 +153,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                  <p className="text-2xl font-light text-ink/80 mb-12 leading-relaxed font-sans max-w-md">
                     A management ecosystem where legal, financial, and engineering domains are merged under a single strategic intent.
                  </p>
-                 <ul className="space-y-6 text-xs font-bold uppercase tracking-[0.2em] text-ink/40 italic font-sans">
+                 <ul className="space-y-6 text-xs font-bold uppercase tracking-[0.2em] text-ink/60 italic font-sans">
                     <li className="flex gap-4 items-center">
                       <div className="w-8 h-px bg-gold/30" /> Integrated Expertise
                     </li>
@@ -199,7 +199,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
         <div className="max-w-7xl mx-auto px-6">
            <div className="max-w-4xl mb-32">
               <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Analysis Logic</span>
-              <h2 className="font-display text-6xl md:text-9xl font-bold tracking-tighter leading-[0.8] mb-12 uppercase">
+              <h2 className="font-display text-4xl sm:text-6xl md:text-9xl font-bold tracking-tighter leading-[1] md:leading-[0.8] mb-12 uppercase">
                 No Progress <br />
                 <span className="font-serif italic font-light italic-text text-gold lowercase">Without Clarity.</span>
               </h2>
@@ -215,7 +215,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                 { l: "Exit Approval", d: "Formal system release only once the outcome is secured." }
               ].map((logic, i) => (
                 <div key={i} className="bg-white p-16 group hover:bg-gold transition-all duration-700">
-                  <span className="text-xs uppercase tracking-widest font-bold text-ink/30 block mb-12 group-hover:text-ink/60 font-sans">Step 0{i+1}</span>
+                  <span className="text-xs uppercase tracking-widest font-bold text-ink/60 block mb-12 group-hover:text-ink font-sans">Step 0{i+1}</span>
                   <p className="text-2xl font-bold font-display uppercase mb-6 tracking-tighter leading-none">{logic.l}</p>
                   <p className="text-base font-light text-ink/60 group-hover:text-ink leading-relaxed italic line-clamp-2 font-serif">{logic.d}</p>
                 </div>
@@ -226,7 +226,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
               <h3 className="font-display text-2xl md:text-4xl font-bold text-gold uppercase tracking-[0.2em] mb-4">
                 "The project moves stage by stage, not by situation."
               </h3>
-              <p className="text-paper/75 font-serif italic text-lg italic-text tracking-widest uppercase font-sans">Discipline is the engine of redevelopment control.</p>
+              <p className="text-paper font-serif italic text-lg italic-text tracking-widest uppercase font-sans">Discipline is the engine of redevelopment control.</p>
            </div>
         </div>
       </section>
@@ -275,9 +275,9 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
            <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
               <div className="max-w-2xl">
                 <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">9-Stage Management Model</span>
-                <h2 className="font-display text-7xl md:text-9xl font-bold tracking-tighter uppercase leading-[0.8]">Expert<br /><span className="text-gold italic font-serif font-light lowercase">Steps.</span></h2>
+                <h2 className="font-display text-4xl sm:text-7xl md:text-9xl font-bold tracking-tighter uppercase leading-[1] md:leading-[0.8]">Expert<br /><span className="text-gold italic font-serif font-light lowercase">Steps.</span></h2>
               </div>
-              <div className="md:w-64 text-ink/40 uppercase tracking-[0.2em] text-xs font-bold leading-relaxed border-l border-gold/30 pl-8 font-sans">
+              <div className="md:w-64 text-ink/60 uppercase tracking-[0.2em] text-xs font-bold leading-relaxed border-l border-gold/30 md:pl-8 font-sans">
                 Redevelopment is governed through a strict 9-stage management model. Each phase requires verified system exit criteria.
               </div>
            </div>
@@ -294,9 +294,9 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                   <div className="pt-8 border-t border-line group-hover:border-paper/10">
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-xs uppercase tracking-[0.2em] font-bold text-gold opacity-0 group-hover:opacity-100 transition-opacity font-sans">Expert Guidelines:</span>
-                      <span className="text-xs font-mono opacity-20 group-hover:opacity-40 transition-opacity">BX_SEC_{i+1}_09</span>
+                      <span className="text-xs font-mono opacity-40 group-hover:opacity-60 transition-opacity">BX_SEC_{i+1}_09</span>
                     </div>
-                    <p className="text-xs font-medium leading-relaxed text-ink/40 group-hover:text-paper/90 transition-colors font-sans uppercase tracking-[0.05em]">{stage.clinical_note}</p>
+                    <p className="text-xs font-medium leading-relaxed text-ink/60 group-hover:text-paper/90 transition-colors font-sans uppercase tracking-[0.05em]">{stage.clinical_note}</p>
                   </div>
                 </div>
               ))}
@@ -310,7 +310,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
            <div className="grid lg:grid-cols-2 gap-32 items-center">
               <div>
                 <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">The Backbone</span>
-                <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-[0.95] mb-12 text-ink">
+                <h2 className="font-serif italic font-light text-4xl sm:text-5xl md:text-8xl leading-[1] md:leading-[0.95] mb-12 text-ink">
                   The <span className="not-italic font-display font-bold text-ink">Management Layer.</span>
                 </h2>
                 <p className="text-xl font-light text-ink/70 mb-12 leading-relaxed font-sans max-w-md">
@@ -321,7 +321,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                    {["Legal Support", "Structural Eng", "Design Studio", "Financial Logic"].map((cap, i) => (
                      <div key={i} className="flex gap-4 items-center">
                         <CheckCircle2 className="w-4 h-4 text-gold/60" />
-                        <span className="text-xs uppercase tracking-[0.2em] font-bold text-ink/40 font-sans">{cap}</span>
+                        <span className="text-xs uppercase tracking-[0.2em] font-bold text-ink/60 font-sans">{cap}</span>
                      </div>
                    ))}
                 </div>
@@ -338,7 +338,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                     ].map((adv, i) => (
                       <div key={i} className="border-t border-paper/10 pt-10 first:border-0 first:pt-0">
                          <h4 className="text-2xl font-display font-bold uppercase mb-4 tracking-tighter leading-none">{adv.l}</h4>
-                         <p className="text-base font-light text-paper/40 leading-relaxed italic font-serif">{adv.d}</p>
+                         <p className="text-base font-light text-paper/60 leading-relaxed italic font-serif">{adv.d}</p>
                       </div>
                     ))}
                  </div>
@@ -353,7 +353,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-32">
              <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Project Stability Simulator</span>
-             <h2 className="font-display text-7xl md:text-9xl font-bold tracking-tighter uppercase leading-[0.8]">Pressure<br /><span className="font-serif italic font-light text-gold lowercase">Analysis.</span></h2>
+             <h2 className="font-display text-4xl sm:text-7xl md:text-9xl font-bold tracking-tighter uppercase leading-[1] md:leading-[0.8]">Pressure<br /><span className="font-serif italic font-light text-gold lowercase">Analysis.</span></h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-1 bg-line border border-line">
@@ -361,7 +361,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                 <div className="space-y-16">
                    <div>
                      <h3 className="text-xl font-bold uppercase mb-4 tracking-tight font-display">Instability Controller</h3>
-                     <p className="text-xs text-ink/40 font-serif italic mb-12">Simulate project risks by adjusting these variables.</p>
+                     <p className="text-xs text-ink/60 font-serif italic mb-12">Simulate project risks by adjusting these variables.</p>
                    </div>
 
                    <div className="space-y-12">
@@ -371,7 +371,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                              <Users className="w-4 h-4 text-gold" />
                              <span>Fragmented Teams</span>
                            </div>
-                           <span className="text-ink/30 italic">{driftFactors.silos}%</span>
+                           <span className="text-ink/60 italic">{driftFactors.silos}%</span>
                         </div>
                         <input 
                           type="range" min="0" max="100" 
@@ -379,7 +379,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                           onChange={(e) => setDriftFactors({...driftFactors, silos: parseInt(e.target.value)})}
                           className="w-full accent-gold h-1 bg-zinc-100 appearance-none cursor-pointer"
                         />
-                        <p className="text-xs text-ink/30 font-serif italic leading-relaxed">Working without a baseline creates extreme team drift.</p>
+                        <p className="text-xs text-ink/60 font-serif italic leading-relaxed">Working without a baseline creates extreme team drift.</p>
                       </div>
 
                       <div className="space-y-6">
@@ -388,7 +388,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                              <Lock className="w-4 h-4 text-gold" />
                              <span>Hidden Decisions</span>
                            </div>
-                           <span className="text-ink/30 italic">{driftFactors.shadow}%</span>
+                           <span className="text-ink/60 italic">{driftFactors.shadow}%</span>
                         </div>
                         <input 
                           type="range" min="0" max="100" 
@@ -396,7 +396,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                           onChange={(e) => setDriftFactors({...driftFactors, shadow: parseInt(e.target.value)})}
                           className="w-full accent-gold h-1 bg-zinc-100 appearance-none cursor-pointer"
                         />
-                        <p className="text-xs text-ink/30 font-serif italic leading-relaxed">Side agreements destabilize core project rules.</p>
+                        <p className="text-xs text-ink/60 font-serif italic leading-relaxed">Side agreements destabilize core project rules.</p>
                       </div>
 
                       <div className="space-y-6">
@@ -413,7 +413,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                           onChange={(e) => setDriftFactors({...driftFactors, transparency: parseInt(e.target.value)})}
                           className="w-full accent-gold h-1 bg-zinc-100 appearance-none cursor-pointer"
                         />
-                        <p className="text-xs text-ink/30 font-serif italic leading-relaxed font-sans opacity-60">System-led reporting restores member alignment and reduces risk probability.</p>
+                        <p className="text-xs text-ink/60 font-serif italic leading-relaxed font-sans opacity-80">System-led reporting restores member alignment and reduces risk probability.</p>
                       </div>
                    </div>
                 </div>
@@ -473,7 +473,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                    <div className="space-y-24">
                       <div>
                         <div className="flex justify-between items-end mb-6">
-                           <span className="text-xs uppercase font-bold tracking-[0.2em] text-paper/40 font-sans">Alignment Probability</span>
+                           <span className="text-xs uppercase font-bold tracking-[0.2em] text-paper/60 font-sans">Alignment Probability</span>
                            <span className="text-5xl font-display font-bold text-gold tracking-tighter leading-none">{alignmentScore}%</span>
                         </div>
                         <div className="h-1 bg-paper/5 w-full overflow-hidden">
@@ -485,7 +485,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                       </div>
                       <div>
                         <div className="flex justify-between items-end mb-6">
-                           <span className="text-xs uppercase font-bold tracking-[0.2em] text-paper/40 font-sans">Risk Exposure (Drift)</span>
+                           <span className="text-xs uppercase font-bold tracking-[0.2em] text-paper/60 font-sans">Risk Exposure (Drift)</span>
                            <span className="text-5xl font-display font-bold text-paper tracking-tighter leading-none">{riskScore}%</span>
                         </div>
                         <div className="h-1 bg-paper/5 w-full overflow-hidden">
@@ -527,7 +527,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                  <div className="bg-white border border-line p-16 md:p-24 shadow-sm relative">
                     <div className="absolute top-0 right-0 w-32 h-32 border-t border-r border-gold/10 -translate-x-[-12px] -translate-y-[-12px]" />
                     <span className="text-gold uppercase tracking-[0.3em] font-bold text-xs mb-12 block font-sans tracking-widest">Strategic Support</span>
-                    <h3 className="font-serif italic font-light text-5xl md:text-8xl mb-16 text-ink leading-[0.95]">
+                    <h3 className="font-serif italic font-light text-4xl sm:text-5xl md:text-8xl mb-16 text-ink leading-[1] md:leading-[0.95]">
                        Project<br />Authority.
                     </h3>
                     <div className="space-y-12">
@@ -538,7 +538,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
                        ].map((role, i) => (
                          <div key={i} className="group">
                             <h4 className="text-xl font-display font-bold uppercase tracking-tight mb-4 group-hover:text-gold transition-colors">{role.t}</h4>
-                            <p className="text-base font-light text-ink/40 leading-relaxed italic font-serif">{role.d}</p>
+                            <p className="text-base font-light text-ink/60 leading-relaxed italic font-serif">{role.d}</p>
                          </div>
                        ))}
                     </div>
@@ -577,7 +577,7 @@ export default function AssureView({ onNavigate }: AssureViewProps) {
              viewport={{ once: true }}
              transition={{ duration: 1.2, ease: "easeOut" }}
            >
-              <h2 className="font-display font-black text-6xl md:text-[160px] leading-none mb-24 tracking-tighter uppercase">
+              <h2 className="font-display font-black text-4xl sm:text-6xl md:text-[160px] leading-[1] md:leading-none mb-24 tracking-tighter uppercase">
                 Structured <br />
                 <span className="not-italic font-serif italic text-gold font-light lowercase">Commitment.</span>
               </h2>

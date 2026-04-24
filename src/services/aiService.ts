@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GoogleGenAI, Type } from "@google/genai";
 import { db } from "../lib/firebase";
 import { 
   collection, 
@@ -18,17 +17,6 @@ import {
   getDocs,
   getDoc
 } from "firebase/firestore";
-
-const getAiKey = () => {
-  const key = process.env.GEMINI_API_KEY;
-  if (!key || key === "MY_GEMINI_API_KEY") {
-    console.warn("Bluexis Intelligence Layer: GEMINI_API_KEY is missing or unconfigured. AI analysis will be disabled.");
-    return "BLOCKED_KEY";
-  }
-  return key;
-};
-
-const ai = new GoogleGenAI({ apiKey: getAiKey() });
 
 export interface CaseEvaluationResult {
   ai_summary: string;
@@ -134,39 +122,15 @@ export async function qualifyExistingCase(caseId: string): Promise<void> {
   await updateDoc(caseRef, { status: "evaluating", updated_at: timestamp });
 
   try {
-    // 2. AI Evaluation (using existing schema definition)
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: `Perform a clinical ASSURE evaluation for the following redevelopment situation: "${rawInput}"
-      
-      INSTRUCTION: Use simple, common redevelopment terms (e.g., Society Members, PMC, Developer, Corpus Fund, IOD/CC). Avoid corporate jargon and focus on project health and consensus.`,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            ai_summary: { type: Type.STRING },
-            clarity_score: { type: Type.NUMBER },
-            alignment_score: { type: Type.NUMBER },
-            risk_score: { type: Type.NUMBER },
-            layers: {
-              type: Type.OBJECT,
-              properties: {
-                alignment_status: { type: Type.STRING, enum: ["weak", "moderate", "strong"] },
-                risk_status: { type: Type.STRING, enum: ["low", "medium", "high"] },
-                decision_status: { type: Type.STRING, enum: ["unclear", "partial", "clear"] },
-                execution_status: { type: Type.STRING, enum: ["unstable", "controlled", "ready"] }
-              },
-              required: ["alignment_status", "risk_status", "decision_status", "execution_status"]
-            },
-            signals: { type: Type.ARRAY, items: { type: Type.STRING } }
-          },
-          required: ["ai_summary", "clarity_score", "alignment_score", "risk_score", "layers", "signals"]
-        }
-      }
+    // 2. AI Evaluation via server-side proxy
+    const response = await fetch("/api/evaluate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rawInput })
     });
 
-    const result: CaseEvaluationResult = JSON.parse(response.text);
+    if (!response.ok) throw new Error("Server evaluation failed");
+    const result: CaseEvaluationResult = await response.json();
 
     // 3. Sequential Update Protocol
     await updateDoc(caseRef, {
@@ -203,7 +167,7 @@ export async function qualifyExistingCase(caseId: string): Promise<void> {
 }
 
 /**
- * Processes a raw user case using Gemini for clinical evaluation.
+ * Processes a raw user case using the server-side AI evaluation.
  */
 export async function evaluateCase(rawInput: string, userId: string): Promise<string> {
   const caseId = await generateNextCaseId();
@@ -230,45 +194,17 @@ export async function evaluateCase(rawInput: string, userId: string): Promise<st
   });
 
   try {
-    // 3. AI Evaluation
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: `Evaluate the following redevelopment project situation for Bluexis Strategic Advisory.
-      
-      USER INPUT: "${rawInput}"
-      
-      INSTRUCTION: Provide the analysis in simple, easy-to-understand terms common in the Mumbai/global redevelopment industry. 
-      Use words like: Society Members, Managing Committee, PMC, Developer, Corpus Fund, Displacement Rent, IOD/CC, Agreement, and Final Handover.
-      Avoid overly academic or corporate jargon. Focus on structural "health" of the project's consensus and planning.`,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            ai_summary: { type: Type.STRING },
-            clarity_score: { type: Type.NUMBER },
-            alignment_score: { type: Type.NUMBER },
-            risk_score: { type: Type.NUMBER },
-            layers: {
-              type: Type.OBJECT,
-              properties: {
-                alignment_status: { type: Type.STRING, enum: ["weak", "moderate", "strong"] },
-                risk_status: { type: Type.STRING, enum: ["low", "medium", "high"] },
-                decision_status: { type: Type.STRING, enum: ["unclear", "partial", "clear"] },
-                execution_status: { type: Type.STRING, enum: ["unstable", "controlled", "ready"] }
-              },
-              required: ["alignment_status", "risk_status", "decision_status", "execution_status"]
-            },
-            signals: { type: Type.ARRAY, items: { type: Type.STRING } }
-          },
-          required: ["ai_summary", "clarity_score", "alignment_score", "risk_score", "layers", "signals"]
-        }
-      }
+    // 3. AI Evaluation via server-side proxy
+    const response = await fetch("/api/evaluate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rawInput })
     });
 
-    const result: CaseEvaluationResult = JSON.parse(response.text);
+    if (!response.ok) throw new Error("Server evaluation failed");
+    const result: CaseEvaluationResult = await response.json();
 
-    // 4. Atomic Updates (Simulated via multiple calls as per Firestore rules)
+    // 4. Atomic Updates
     
     // Update Case
     await updateDoc(caseRef, {

@@ -146,11 +146,11 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
           >
             <div className="text-center space-y-6">
                <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Project Guidance System</span>
-               <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[0.8] mb-8 text-ink">
+               <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-[0.8] mb-8 text-ink">
                   Select <br />
                   <span className="text-gold italic font-serif font-light lowercase">Stage.</span>
                </h2>
-               <p className="text-2xl text-ink/40 font-serif italic max-w-xl mx-auto border-t border-line pt-12">
+               <p className="text-lg md:text-2xl text-ink/60 font-serif italic max-w-xl mx-auto border-t border-line pt-12">
                   To provide the right expert support, we first need to understand where your project stands today.
                </p>
             </div>
@@ -184,7 +184,7 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
                    onClick={() => {
                      if (opt.id === 'shield' && onNavigate) onNavigate('shield');
                      else if (opt.id === 'assure_route' && onNavigate) onNavigate('assure');
-                     else setStep('triage');
+                     else setStep('stage_selection');
                    }}
                    className="bg-white p-12 text-left hover:bg-zinc-50 transition-all group relative overflow-hidden h-full"
                  >
@@ -195,7 +195,7 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
                        <ChevronRight className="w-4 h-4 text-ink/20 group-hover:text-gold transition-all" />
                     </div>
                     <h3 className="text-xl font-bold uppercase tracking-tight mb-4 font-display group-hover:text-gold transition-colors">{opt.t}</h3>
-                    <p className="text-base font-light text-ink/40 leading-relaxed italic font-serif h-12 overflow-hidden">{opt.desc}</p>
+                    <p className="text-base font-light text-ink/60 leading-relaxed italic font-serif h-12 overflow-hidden">{opt.desc}</p>
                  </button>
                ))}
             </div>
@@ -238,7 +238,7 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
             </div>
 
             <div className="space-y-6 max-w-2xl px-6">
-              <h2 className="font-display text-7xl md:text-9xl font-bold uppercase tracking-tighter leading-[0.8] mb-8">
+              <h2 className="font-display text-5xl sm:text-7xl md:text-9xl font-bold uppercase tracking-tighter leading-[1] md:leading-[0.8] mb-8">
                 Health <br />
                 <span className="text-gold italic font-serif font-light lowercase">Check.</span>
               </h2>
@@ -349,12 +349,12 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
             animate={{ opacity: 1, x: 0 }}
             className="space-y-12"
           >
-             <div className="border-l border-gold pl-12">
+             <div className="border-l border-gold pl-8 md:pl-12">
                <span className="text-xs uppercase tracking-[0.6em] font-bold text-gold mb-6 block font-sans tracking-widest">Step 2 of 5 — Phase Mapping</span>
-               <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-none mb-4">
+               <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-none mb-4">
                  {isRealtyProfessional ? "Expert Analysis" : "Project Summary"}
                </h2>
-               <p className="text-2xl font-light text-ink/40 font-serif italic max-w-2xl leading-relaxed">
+               <p className="text-lg md:text-2xl font-light text-ink/60 font-serif italic max-w-2xl leading-relaxed">
                  Select the project stage that matches your current situation. This helps us provide the most relevant advice.
                </p>
             </div>
@@ -491,12 +491,12 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
             animate={{ opacity: 1, x: 0 }}
             className="space-y-16 animate-in fade-in slide-in-from-right-8 duration-700"
           >
-            <div className="border-l border-gold pl-12">
+            <div className="border-l border-gold pl-8 md:pl-12">
                <span className="text-xs uppercase tracking-[0.6em] font-bold text-gold mb-6 block font-sans tracking-widest font-sans">Step 3 of 5 — Problem Signals</span>
-               <h2 className="text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none mb-4">
+               <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-[1] md:leading-none mb-4">
                  {isRealtyProfessional ? "Project Friction" : "Secondary Issues"}
                </h2>
-               <p className="text-xl md:text-2xl font-light text-ink/40 font-serif italic max-w-2xl leading-relaxed">
+               <p className="text-lg md:text-2xl font-light text-ink/40 font-serif italic max-w-2xl leading-relaxed">
                  Select any other signs of trouble you have noticed. These help us understand the root cause of the delays.
                </p>
             </div>
@@ -543,10 +543,10 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
             animate={{ opacity: 1, x: 0 }}
             className="space-y-16 animate-in fade-in slide-in-from-right-8 duration-700"
           >
-            <div className="border-l border-gold pl-12">
+            <div className="border-l border-gold pl-8 md:pl-12">
                <span className="text-gold uppercase tracking-[0.6em] font-bold text-xs mb-6 block font-sans tracking-widest">Step 4 of 5 — Summary</span>
-               <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-none mb-4">Your Story</h2>
-               <p className="text-2xl font-light text-ink/40 font-serif italic max-w-2xl leading-relaxed">
+               <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-none mb-4">Your Story</h2>
+               <p className="text-lg md:text-2xl font-light text-ink/60 font-serif italic max-w-2xl leading-relaxed">
                  Briefly describe the current situation. Focus on what has caused the most frustration or confusion.
                </p>
             </div>
@@ -593,10 +593,10 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
             animate={{ opacity: 1, y: 0 }}
             className="space-y-16 animate-in fade-in slide-in-from-bottom-8 duration-700"
           >
-            <div className="border-l border-gold pl-12">
+            <div className="border-l border-gold pl-8 md:pl-12">
                <span className="text-gold uppercase tracking-[0.6em] font-bold text-xs mb-6 block font-sans tracking-widest">Step 5 of 5 — Details</span>
-               <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-none mb-4">Final Details</h2>
-               <p className="text-2xl font-light text-ink/40 font-serif italic max-w-2xl leading-relaxed">
+               <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-none mb-4">Final Details</h2>
+               <p className="text-lg md:text-2xl font-light text-ink/60 font-serif italic max-w-2xl leading-relaxed">
                  Expert analysis requires basic contact info to generate your specific project roadmap.
                </p>
             </div>
@@ -649,57 +649,24 @@ export default function SituationView({ onNavigate }: { onNavigate?: (page: Page
                     )}
                   </div>
                </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-4">
+                  <div className="grid md:grid-cols-1 gap-4 max-w-md mx-auto">
                <button 
                  disabled={!formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone)}
                  onClick={async () => {
                    await handleLogin();
                    if (auth.currentUser) startEvaluation();
                  } }
-                 className={`p-12 border transition-all group flex flex-col items-center justify-center text-center shadow-2xl h-full ${
+                 className={`p-16 border transition-all group flex flex-col items-center justify-center text-center shadow-2xl h-full ${
                    !formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone)
                    ? 'bg-zinc-100 border-line text-ink/20 cursor-not-allowed'
                    : 'bg-zinc-950 text-paper border-zinc-950 hover:border-gold'
                  }`}
                >
-                 <ShieldCheck className={`w-10 h-10 mb-6 transition-transform ${!formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone) ? 'opacity-20' : 'text-gold group-hover:scale-110'}`} />
-                 <span className="text-xs uppercase tracking-[0.5em] font-bold mb-4">Google Login</span>
-                 <p className="text-xs font-light italic font-serif leading-relaxed max-w-[140px] opacity-40">Standard secure sign-in protocol.</p>
+                 <ShieldCheck className={`w-12 h-12 mb-6 transition-transform ${!formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone) ? 'opacity-20' : 'text-gold group-hover:scale-110'}`} />
+                 <span className="text-xs uppercase tracking-[0.5em] font-bold mb-4">Initialize with Google</span>
+                 <p className="text-xs font-light italic font-serif leading-relaxed max-w-[200px] opacity-40">Standard secure sign-in protocol to create your case.</p>
                </button>
-
-               <button 
-                 disabled={!formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone)}
-                 onClick={() => {
-                   alert("WhatsApp Verification Service: Initializing encrypted handshake...");
-                   if (user) startEvaluation();
-                   else handleLogin();
-                 }}
-                 className={`p-12 border transition-all group flex flex-col items-center justify-center text-center h-full ${
-                   !formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone)
-                   ? 'bg-zinc-100 border-line text-ink/20 cursor-not-allowed'
-                   : 'bg-white border-line hover:border-[#25D366]'
-                 }`}
-               >
-                 <div className={`w-10 h-10 mb-6 font-display font-black text-4xl leading-none ${!formData.fullName || !formData.email || !isValidEmail(formData.email) || !formData.phone || !isValidPhone(formData.phone) ? 'opacity-20' : 'text-[#25D366]'}`}>W</div>
-                 <span className="text-xs uppercase tracking-[0.5em] font-bold mb-4">WhatsApp OTP</span>
-                 <p className="text-xs font-light italic font-serif leading-relaxed max-w-[140px] opacity-40">Direct secure sign-in for mobile users.</p>
-               </button>
-
-               <button 
-                 onClick={() => {
-                   alert("Identity SDK: Pulling verified structural profile...");
-                   if (user) startEvaluation();
-                   else handleLogin();
-                 }}
-                 className="p-12 border border-line bg-white hover:border-gold transition-all group flex flex-col items-center justify-center text-center h-full"
-               >
-                 <div className="w-10 h-10 text-gold mb-6 font-display font-black text-4xl leading-none italic">ID</div>
-                 <span className="text-xs uppercase tracking-[0.5em] font-bold mb-4 text-ink">Truecaller ID</span>
-                 <p className="text-xs font-light text-ink/40 italic font-serif leading-relaxed max-w-[140px]">Instant one-tap verified profile sign-in.</p>
-               </button>
-            </div>
+            </div>        </div>
 
             <div className="pt-24 text-center border-t border-line">
                <button onClick={() => setStep('narrative')} className="text-xs uppercase tracking-[0.6em] font-bold text-ink/20 hover:text-ink transition-colors flex items-center gap-4 mx-auto font-sans tracking-widest">

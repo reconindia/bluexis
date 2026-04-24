@@ -66,6 +66,25 @@
         "timestamp": { "type": "string", "format": "date-time" }
       },
       "required": ["case_id", "event", "actor", "timestamp"]
+    },
+    "IntakeEvaluation": {
+      "title": "Intake Evaluation",
+      "description": "Early diagnostic assessment data.",
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "user_email": { "type": "string" },
+        "userType": { "type": "string" },
+        "situation": { "type": "string" },
+        "setup": { "type": "string" },
+        "concern": { "type": "string" },
+        "note": { "type": "string" },
+        "riskScore": { "type": "number" },
+        "confidence": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["user_id", "userType", "situation"]
     }
   },
   "firestore": {
@@ -73,6 +92,8 @@
     "/cases/{caseId}": { "schema": "Case", "description": "Primary decision layer entities." },
     "/case_signals/{caseId}": { "schema": "CaseSignal", "description": "Extracted signals for each case." },
     "/case_layers/{caseId}": { "schema": "CaseLayer", "description": "ASSURE protocol metrics." },
-    "/case_activity/{activityId}": { "schema": "CaseActivity", "description": "System-wide audit log." }
+    "/case_activity/{activityId}": { "schema": "CaseActivity", "description": "System-wide audit log." },
+    "/intake_evaluations/{evalId}": { "schema": "IntakeEvaluation", "description": "Diagnostic intakes." },
+    "/sessions/{sessionId}": { "schema": "IntakeEvaluation", "description": "Diagnostic sessions." }
   }
 }

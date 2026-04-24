@@ -5,10 +5,6 @@
 
 import { 
   signInWithPopup, 
-  GoogleAuthProvider, 
-  RecaptchaVerifier, 
-  signInWithPhoneNumber,
-  ConfirmationResult
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db, googleProvider } from '../lib/firebase';
@@ -24,36 +20,6 @@ export async function handleGoogleLogin() {
     console.error("Google Auth Error:", error);
     throw error;
   }
-}
-
-/**
- * Handles WhatsApp Login (Phone Auth Simulation/API Ready)
- * In production, this would use Firebase Phone Auth with reCAPTCHA.
- */
-export async function handleWhatsAppLogin(phoneNumber: string, appVerificationId: string = 'recaptcha-container') {
-  try {
-    // Note: Ensuring reCAPTCHA verifier is initialized in the UI component
-    const verifier = new RecaptchaVerifier(auth, appVerificationId, {
-      size: 'invisible'
-    });
-    
-    const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, verifier);
-    return confirmationResult;
-  } catch (error: any) {
-    console.error("WhatsApp Auth Error:", error);
-    throw error;
-  }
-}
-
-/**
- * Placeholder for Truecaller Authentication
- * Only visible on mobile devices.
- */
-export async function handleTruecallerLogin() {
-  console.log("Initializing Truecaller Auth Context...");
-  // Placeholder for Truecaller SDK integration
-  // return await truecallerSDK.login();
-  throw new Error("Truecaller API integration pending configuration.");
 }
 
 /**

@@ -9,7 +9,7 @@ import Navigation from './components/Navigation';
 import HomeView from './views/HomeView';
 import AssureView from './views/AssureView';
 import ShieldView from './views/ShieldView';
-import SituationView from './views/SituationView';
+import StartFlowView from './views/StartFlowView';
 import DashboardView from './views/DashboardView';
 import GovernanceView from './views/GovernanceView';
 import { Page } from './types';
@@ -31,9 +31,9 @@ export default function App() {
       case 'shield':
         return <ShieldView onNavigate={setCurrentPage} />;
       case 'situation':
-        return <SituationView onNavigate={setCurrentPage} />;
+        return <StartFlowView onComplete={() => setCurrentPage('dashboard')} />;
       case 'dashboard':
-        return <DashboardView />;
+        return <DashboardView onNavigate={setCurrentPage} />;
       case 'governance':
         return <GovernanceView />;
       default:
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-paper paper-texture overflow-x-hidden">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      {currentPage !== 'situation' && <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />}
       
       <main className="relative">
         <AnimatePresence mode="wait">
@@ -64,16 +64,16 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
               <div className="flex items-center gap-2 mb-6 pointer-events-none">
-                <Logo className="h-10" />
+                <Logo type="full" className="h-12" color="var(--color-paper)" />
               </div>
-              <p className="text-sm font-light text-paper/40 leading-relaxed uppercase tracking-wider">
+              <p className="text-sm font-light text-paper/60 leading-relaxed uppercase tracking-wider">
                 Strategic decision layer and structured redevelopment systems for societies, PMCs, and developers.
               </p>
             </div>
             
             <div className="grid grid-cols-2 gap-20">
               <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold text-paper/30 mb-6">Navigation</h4>
+                <h4 className="text-[10px] uppercase tracking-widest font-bold text-paper/40 mb-6">Navigation</h4>
                 <ul className="space-y-4 text-xs font-medium uppercase tracking-widest">
                   <li><button onClick={() => setCurrentPage('home')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Home</button></li>
                   <li><button onClick={() => setCurrentPage('assure')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">ASSURE™</button></li>
@@ -83,19 +83,19 @@ export default function App() {
                 </ul>
               </div>
               <div>
-                <h4 className="text-[10px] uppercase tracking-widest font-bold text-paper/30 mb-6">System</h4>
+                <h4 className="text-[10px] uppercase tracking-widest font-bold text-paper/60 mb-6">System</h4>
                 <ul className="space-y-4 text-xs font-medium uppercase tracking-widest">
-                  <li className="opacity-40">Privacy Policy</li>
-                  <li className="opacity-40">Terms of Governance</li>
-                  <li className="opacity-40">Ethics Protocol</li>
+                  <li className="opacity-60 hover:opacity-100 transition-opacity cursor-pointer">Privacy Policy</li>
+                  <li className="opacity-60 hover:opacity-100 transition-opacity cursor-pointer">Terms of Governance</li>
+                  <li className="opacity-60 hover:opacity-100 transition-opacity cursor-pointer">Ethics Protocol</li>
                 </ul>
               </div>
             </div>
           </div>
           
           <div className="pt-8 border-t border-paper/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span className="text-[9px] uppercase tracking-[0.3em] font-black text-paper/30 italic">© 2026 Bluexis Strategic Advisory. All Structure Reserved.</span>
-            <span className="text-[9px] uppercase tracking-[0.3em] font-black text-paper/20">Decision Layer: BLX-492-SYS</span>
+            <span className="text-[9px] uppercase tracking-[0.3em] font-black text-paper/50 italic">© 2026 Bluexis Strategic Advisory. All Structure Reserved.</span>
+            <span className="text-[9px] uppercase tracking-[0.3em] font-black text-paper/40">Decision Layer: BLX-492-SYS</span>
           </div>
         </div>
       </footer>

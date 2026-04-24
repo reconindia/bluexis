@@ -17,10 +17,11 @@ export default function Logo({ className = '', type = 'full', color = 'currentCo
 
   // Simple, high-end serif wordmark in golden tones as requested
   const Wordmark = () => (
-    <div className="flex items-center" style={{ color: color === 'currentColor' ? 'var(--color-gold)' : color }}>
+    <div className="flex items-center">
       <div className="flex items-baseline font-serif font-bold text-2xl md:text-3xl tracking-tight leading-none">
-        <span>Bluexis</span>
-        <span className="text-[0.45em] translate-y-[-0.6em] ml-0.5 opacity-80">™</span>
+        <span style={{ color: color !== 'currentColor' ? color : undefined }} className={color === 'currentColor' ? 'text-ink' : ''}>Blue</span>
+        <span className="text-gold">xis</span>
+        <span className="text-[0.45em] translate-y-[-0.6em] ml-0.5 opacity-60 text-gold-dark">™</span>
       </div>
     </div>
   );

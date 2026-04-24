@@ -81,22 +81,22 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
           >
             <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 py-32 items-center">
               <div>
-                <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-12 block font-sans tracking-widest">INTERVENTION SYSTEM — SHIELD™</span>
-                <h1 className="font-display font-bold text-6xl md:text-[84px] leading-[0.85] mb-12 tracking-tighter uppercase">
+                <span className="text-gold-dark uppercase tracking-[0.4em] font-bold text-xs mb-12 block font-sans tracking-widest">INTERVENTION SYSTEM — SHIELD™</span>
+                <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-[84px] leading-[1] md:leading-[0.85] mb-12 tracking-tighter uppercase text-ink">
                   Your redevelopment <br />
-                  <span className="text-gold">didn't fail.</span> <br />
-                  <span className="italic font-serif font-light lowercase">Your developer</span> <br />
-                  <span className="not-italic">selection failed.</span>
+                  <span className="text-gold-dark italic font-serif font-light lowercase">didn't</span> <span className="text-ink">fail.</span> <br />
+                  <span className="italic font-serif font-light lowercase text-gold-dark">Your developer</span> <br />
+                  <span className="not-italic text-ink">selection failed.</span>
                 </h1>
                 <div className="space-y-6 max-w-2xl">
                   <p className="text-xl font-light text-ink/80 font-sans tracking-tight leading-relaxed">
                     SHIELD™ is a 120-Day Developer Selection Control System for societies where:
                   </p>
-                  <ul className="grid sm:grid-cols-2 gap-4 text-sm font-bold uppercase tracking-widest text-ink/50 font-sans italic">
-                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> Tender process failed</li>
-                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> Offers are misleading</li>
-                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> Developer unreliable</li>
-                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> Decisions collapsed</li>
+                  <ul className="grid sm:grid-cols-2 gap-4 text-sm font-bold uppercase tracking-widest text-ink/80 font-sans italic">
+                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> <span className="border-b border-gold/20">Tender process failed</span></li>
+                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> <span className="border-b border-gold/20">Offers are misleading</span></li>
+                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> <span className="border-b border-gold/20">Developer unreliable</span></li>
+                    <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 bg-gold" /> <span className="border-b border-gold/20">Decisions collapsed</span></li>
                   </ul>
                 </div>
               </div>
@@ -145,9 +145,9 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
             <div className="max-w-5xl mx-auto px-6 w-full">
                <div className="grid lg:grid-cols-2 gap-24 items-center">
                   <div>
-                    <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Reality Check</span>
-                    <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[0.85] mb-12 text-ink">
-                      If you restart without <span className="italic font-serif font-light text-gold lowercase">control,</span> you will repeat the same <span className="not-italic">failure.</span>
+                    <span className="text-gold-dark uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Reality Check</span>
+                    <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-[0.85] mb-12 text-ink">
+                      If you restart without <span className="italic font-serif font-light text-gold-dark lowercase">control,</span> you will repeat the same <span className="not-italic">failure.</span>
                     </h2>
                     <div className="grid grid-cols-2 gap-8">
                        {[
@@ -156,17 +156,17 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                          "Same internal conflict",
                          "Same outcome"
                        ].map((t, i) => (
-                         <div key={i} className="flex items-center gap-4 border-l-2 border-gold/20 pl-6 py-2">
-                           <span className="text-xs font-bold uppercase tracking-widest text-ink/40 font-sans">{t}</span>
+                         <div key={i} className="flex items-center gap-4 border-l-2 border-gold-dark/20 pl-6 py-2">
+                           <span className="text-xs font-bold uppercase tracking-widest text-ink/60 font-sans">{t}</span>
                          </div>
                        ))}
                     </div>
                   </div>
                   
                   <div className="bg-zinc-50 border border-line p-16 relative">
-                     <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-12 block font-sans">The Reframe</span>
+                     <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold-dark mb-12 block font-sans">The Reframe</span>
                      <p className="text-4xl font-serif italic text-ink mb-12 leading-tight">
-                       "You don't have a developer problem. You have a <span className="text-gold font-sans not-italic uppercase font-bold tracking-tighter">selection system failure."</span>
+                       "You don't have a developer problem. You have a <span className="text-gold-dark font-sans not-italic uppercase font-bold tracking-tighter">selection system failure."</span>
                      </p>
                      
                      <div className="space-y-12">
@@ -176,11 +176,11 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                           { t: "No validation", d: "Creating risky commitments." }
                         ].map((item, i) => (
                           <div key={i} className="group">
-                             <h4 className="text-sm font-bold uppercase tracking-widest mb-2 flex items-center gap-4">
-                               <span className="text-gold font-mono">0{i+1}</span>
+                             <h4 className="text-sm font-bold uppercase tracking-widest mb-2 flex items-center gap-4 text-ink">
+                               <span className="text-gold-dark font-mono font-black">0{i+1}</span>
                                {item.t}
                              </h4>
-                             <p className="text-xs font-light text-ink/40 italic font-serif pl-8">{item.d}</p>
+                             <p className="text-xs font-light text-ink/60 italic font-serif pl-8">{item.d}</p>
                           </div>
                         ))}
                      </div>
@@ -207,12 +207,12 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
             className="min-h-screen flex items-center bg-white"
           >
             <div className="max-w-5xl mx-auto px-6 text-center">
-               <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-12 block font-sans tracking-widest">Expert Insight</span>
-               <h2 className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-[0.8] mb-16 text-ink">
+               <span className="text-gold-dark uppercase tracking-[0.4em] font-bold text-xs mb-12 block font-sans tracking-widest">Expert Insight</span>
+               <h2 className="text-4xl sm:text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-[1] md:leading-[0.8] mb-16 text-ink">
                   You don't have a <br />
-                  <span className="text-gold italic font-serif font-light lowercase">delivery gap.</span> <br />
+                  <span className="text-gold-dark italic font-serif font-light lowercase">delivery gap.</span> <br />
                   You have a <br />
-                  <span className="not-italic">management gap.</span>
+                  <span className="not-italic text-ink">management gap.</span>
                </h2>
                
                <div className="grid md:grid-cols-3 gap-px bg-line">
@@ -222,13 +222,13 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                     { l: "Control Absence", r: "Project Stagnation", desc: "Complexity leads to project delays." }
                   ].map((pair, i) => (
                     <div key={i} className="bg-white p-12 text-left group hover:bg-zinc-50 transition-all duration-300 h-full border border-line">
-                       <TrendingDown className="w-6 h-6 text-gold mb-8 transition-transform" />
+                       <TrendingDown className="w-6 h-6 text-gold-dark mb-8 transition-transform" />
                        <div className="flex items-center gap-4 mb-4">
-                          <span className="text-xs font-bold uppercase text-ink/20 font-sans">{pair.l}</span>
-                          <ArrowRight className="w-3 h-3 text-gold opacity-30" />
+                          <span className="text-xs font-bold uppercase text-ink/30 font-sans">{pair.l}</span>
+                          <ArrowRight className="w-3 h-3 text-gold-dark opacity-30" />
                           <span className="text-xs font-bold uppercase text-ink font-sans">{pair.r}</span>
                        </div>
-                       <p className="text-xs font-light text-ink/40 italic font-serif leading-relaxed">{pair.desc}</p>
+                       <p className="text-xs font-light text-ink/50 italic font-serif leading-relaxed">{pair.desc}</p>
                     </div>
                   ))}
                </div>
@@ -252,13 +252,12 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="min-h-screen py-40 flex items-center bg-white text-ink"
           >
-            <div className="max-w-7xl mx-auto px-6 w-full">
-               <div className="grid lg:grid-cols-3 gap-24 items-start">
+            <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-24 items-start">
                   <div className="lg:col-span-1 border-l border-gold pl-12">
-                     <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">INTERVENTION ENGINE</span>
-                     <h2 className="text-7xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
+                     <span className="text-gold-dark uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">INTERVENTION ENGINE</span>
+                     <h2 className="text-5xl sm:text-7xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
                         SHIELD™ <br />
-                        <span className="text-gold italic font-serif font-light lowercase">Protocol.</span>
+                        <span className="text-gold-dark italic font-serif font-light lowercase">Protocol.</span>
                      </h2>
                      <p className="text-xl font-light text-ink/60 italic font-serif leading-relaxed mb-12">
                         A time-bound system to select the right developer, not the highest offer.
@@ -271,7 +270,7 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                           { t: "Controlled Selection", d: "Structured comparison and weighted decision locking." }
                         ].map((p, i) => (
                           <div key={i} className="flex gap-4 group">
-                             <span className="text-gold font-display font-black text-xs mt-1 opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</span>
+                             <span className="text-gold-dark font-display font-black text-xs mt-1 opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</span>
                              <div>
                                <h4 className="text-sm uppercase font-bold tracking-widest text-ink mb-1 font-sans">{p.t}</h4>
                                <p className="text-xs text-ink/40 italic font-serif leading-relaxed">{p.d}</p>
@@ -294,7 +293,7 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                      {/* Timeline Slider */}
                      <div className="relative mb-24">
                         <div className="flex justify-between items-center mb-12">
-                           <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold font-sans">The 120-Day Selection Protocol</span>
+                           <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold-dark font-sans">The 120-Day Selection Protocol</span>
                            <span className="text-4xl font-display font-bold text-ink">Day {timelineVal}</span>
                         </div>
 
@@ -305,18 +304,18 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                           className="w-full accent-gold h-px bg-line appearance-none cursor-pointer mb-12"
                         />
 
-                        <div className="flex justify-between items-start text-xs uppercase tracking-[0.15em] font-bold text-ink/30 font-sans">
+                        <div className="flex justify-between items-start text-xs uppercase tracking-[0.15em] font-bold text-ink/50 font-sans">
                            <div className={`transition-all duration-700 ${timelineVal <= 30 ? 'text-gold' : ''}`}>
                              <span className="block mb-1">Phase 1: 0 — 30 Days</span>
-                             <span className="block font-light italic font-serif lowercase text-ink/40">Stabilization</span>
+                             <span className="block font-light italic font-serif lowercase text-ink/60">Stabilization</span>
                            </div>
                            <div className={`transition-all duration-700 ${timelineVal > 30 && timelineVal <= 75 ? 'text-gold' : ''}`}>
                              <span className="block mb-1">Phase 2: 30 — 75 Days</span>
-                             <span className="block font-light italic font-serif lowercase text-ink/40">Validation</span>
+                             <span className="block font-light italic font-serif lowercase text-ink/60">Validation</span>
                            </div>
                            <div className={`transition-all duration-700 ${timelineVal > 75 ? 'text-gold' : ''}`}>
                              <span className="block mb-1">Phase 3: 75 — 120 Days</span>
-                             <span className="block font-light italic font-serif lowercase text-ink/40">Controlled Selection</span>
+                             <span className="block font-light italic font-serif lowercase text-ink/60">Controlled Selection</span>
                            </div>
                         </div>
                      </div>
@@ -330,19 +329,19 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                                 <motion.div key="p1" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                                   <Lock className="w-12 h-12 text-gold mx-auto mb-6" />
                                   <p className="text-sm uppercase tracking-[0.4em] font-black text-ink font-sans mb-4">Phase 1: Stabilization</p>
-                                  <p className="text-xs text-ink/40 italic font-serif">Stop informal decisions. Rebuild authority structure. Organize documents.</p>
+                                  <p className="text-xs text-ink/60 italic font-serif">Stop informal decisions. Rebuild authority structure. Organize documents.</p>
                                 </motion.div>
                               ) : timelineVal <= 75 ? (
                                 <motion.div key="p2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                                   <Activity className="w-12 h-12 text-gold mx-auto mb-6" />
                                   <p className="text-sm uppercase tracking-[0.4em] font-black text-ink font-sans mb-4">Phase 2: Validation</p>
-                                  <p className="text-xs text-ink/40 italic font-serif">Independent feasibility check. Risk mapping. Legal validation.</p>
+                                  <p className="text-xs text-ink/60 italic font-serif">Independent feasibility check. Risk mapping. Legal validation.</p>
                                 </motion.div>
                               ) : (
                                 <motion.div key="p3" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                                   <Target className="w-12 h-12 text-gold mx-auto mb-6" />
                                   <p className="text-sm uppercase tracking-[0.4em] font-black text-ink font-sans mb-4">Phase 3: Selection</p>
-                                  <p className="text-xs text-ink/40 italic font-serif">Structured developer comparison. Evaluation framework. Decision locking.</p>
+                                  <p className="text-xs text-ink/60 italic font-serif">Structured developer comparison. Evaluation framework. Decision locking.</p>
                                 </motion.div>
                               )}
                            </AnimatePresence>
@@ -350,7 +349,6 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                      </div>
                   </div>
                </div>
-            </div>
           </motion.section>
         )}
 
@@ -471,7 +469,7 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                <div className="grid lg:grid-cols-2 gap-32 items-center">
                   <div>
                      <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">System Preview</span>
-                     <h2 className="text-7xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
+                     <h2 className="text-5xl sm:text-7xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
                         Recovery <br />
                         <span className="text-gold italic font-serif font-light lowercase">Dashboard.</span>
                      </h2>
@@ -549,7 +547,7 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
           >
             <div className="max-w-6xl mx-auto px-6 text-center w-full">
                <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-12 block font-sans tracking-widest">Phase Locking</span>
-               <h2 className="text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-none mb-12">
+               <h2 className="text-4xl sm:text-6xl md:text-[100px] font-display font-bold uppercase tracking-tighter leading-[1] md:leading-none mb-12">
                   Selecting the right developer <br />
                   <span className="text-gold italic font-serif font-light lowercase">is not success.</span>
                </h2>
@@ -610,9 +608,9 @@ export default function ShieldView({ onNavigate }: ShieldViewProps) {
                  whileInView={{ opacity: 1, scale: 1 }}
                  className="space-y-24"
                >
-                  <h2 className="text-7xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
+                  <h2 className="text-4xl sm:text-7xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-none mb-12">
                      Do not restart <br />
-                     <span className="italic font-serif font-light text-gold text-5xl md:text-9xl lowercase block mt-8 leading-none">redevelopment.</span>
+                     <span className="italic font-serif font-light text-gold text-3xl sm:text-6xl md:text-9xl lowercase block mt-8 leading-none">redevelopment.</span>
                   </h2>
 
                   <p className="text-3xl md:text-5xl font-serif font-light italic text-paper/70 leading-relaxed max-w-3xl mx-auto border-y border-white/10 py-16">
