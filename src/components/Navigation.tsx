@@ -20,7 +20,9 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
   const navItems = [
     { id: 'home', label: 'Overview' },
     { id: 'assure', label: 'ASSURE™' },
-    { id: 'contact', label: 'Situation' },
+    { id: 'shield', label: 'SHIELD™' },
+    { id: 'governance', label: 'Governance' },
+    { id: 'situation', label: 'Situation' },
     { id: 'dashboard', label: 'Portal' },
   ];
 
@@ -38,8 +40,8 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
         >
           <Logo type="full" color="var(--color-gold)" className="hover:scale-105 transition-transform" />
           <div className="border-l border-ink/10 h-6 md:h-8 ml-0.5 md:ml-1 pl-3 md:pl-4 flex flex-col justify-center">
-            <span className="text-[6px] md:text-[8px] uppercase tracking-[0.4em] font-black opacity-40 leading-none">Strategic</span>
-            <span className="text-[6px] md:text-[8px] uppercase tracking-[0.4em] font-black opacity-40 leading-none mt-0.5 md:mt-1">Advisory</span>
+            <span className="text-[6px] md:text-[8px] uppercase tracking-[0.4em] font-black opacity-30 leading-none">Strategic</span>
+            <span className="text-[6px] md:text-[8px] uppercase tracking-[0.4em] font-black opacity-30 leading-none mt-0.5 md:mt-1 font-serif italic italic-text">Advisory</span>
           </div>
         </div>
         
@@ -49,7 +51,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
             <button
               key={item.id}
               onClick={() => handleNavigate(item.id as Page)}
-              className={`text-[10px] uppercase tracking-[0.25em] font-bold transition-all hover:text-gold relative py-1 ${
+              className={`text-[9px] uppercase tracking-[0.4em] font-black transition-all hover:text-gold relative py-1 ${
                 currentPage === item.id ? 'text-ink' : 'text-ink/30'
               }`}
             >
@@ -57,7 +59,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
               {currentPage === item.id && (
                 <motion.div
                   layoutId="nav-underline"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold"
+                  className="absolute bottom-0 left-0 right-0 h-[1px] bg-gold"
                 />
               )}
             </button>
@@ -88,7 +90,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
                   key={item.id}
                   onClick={() => handleNavigate(item.id as Page)}
                   className={`text-xl uppercase tracking-[0.2em] font-bold text-left ${
-                    currentPage === item.id ? 'text-gold' : 'text-ink/60'
+                    currentPage === item.id ? 'text-gold' : 'text-ink/80'
                   }`}
                 >
                   {item.label}

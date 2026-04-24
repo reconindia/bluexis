@@ -8,8 +8,10 @@ import { AnimatePresence, motion } from 'motion/react';
 import Navigation from './components/Navigation';
 import HomeView from './views/HomeView';
 import AssureView from './views/AssureView';
-import ContactView from './views/ContactView';
+import ShieldView from './views/ShieldView';
+import SituationView from './views/SituationView';
 import DashboardView from './views/DashboardView';
+import GovernanceView from './views/GovernanceView';
 import { Page } from './types';
 import Logo from './components/Logo';
 
@@ -26,10 +28,14 @@ export default function App() {
         return <HomeView onNavigate={setCurrentPage} />;
       case 'assure':
         return <AssureView onNavigate={setCurrentPage} />;
-      case 'contact':
-        return <ContactView />;
+      case 'shield':
+        return <ShieldView onNavigate={setCurrentPage} />;
+      case 'situation':
+        return <SituationView onNavigate={setCurrentPage} />;
       case 'dashboard':
         return <DashboardView />;
+      case 'governance':
+        return <GovernanceView />;
       default:
         return <HomeView onNavigate={setCurrentPage} />;
     }
@@ -71,7 +77,8 @@ export default function App() {
                 <ul className="space-y-4 text-xs font-medium uppercase tracking-widest">
                   <li><button onClick={() => setCurrentPage('home')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Home</button></li>
                   <li><button onClick={() => setCurrentPage('assure')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">ASSURE™</button></li>
-                  <li><button onClick={() => setCurrentPage('contact')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Contact</button></li>
+                  <li><button onClick={() => setCurrentPage('governance')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Governance</button></li>
+                  <li><button onClick={() => setCurrentPage('situation')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Situation</button></li>
                   <li><button onClick={() => setCurrentPage('dashboard')} className="hover:text-gold transition-all border-b border-transparent hover:border-gold/30 pb-0.5">Portal</button></li>
                 </ul>
               </div>

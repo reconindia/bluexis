@@ -137,7 +137,9 @@ export async function qualifyExistingCase(caseId: string): Promise<void> {
     // 2. AI Evaluation (using existing schema definition)
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `Perform clinical ASSURE evaluation for the following redevelopment situation: "${rawInput}"`,
+      contents: `Perform a clinical ASSURE evaluation for the following redevelopment situation: "${rawInput}"
+      
+      INSTRUCTION: Use simple, common redevelopment terms (e.g., Society Members, PMC, Developer, Corpus Fund, IOD/CC). Avoid corporate jargon and focus on project health and consensus.`,
       config: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -231,11 +233,13 @@ export async function evaluateCase(rawInput: string, userId: string): Promise<st
     // 3. AI Evaluation
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `Evaluate the following redevelopment project situation for Bluexis Strategic Advisory:
+      contents: `Evaluate the following redevelopment project situation for Bluexis Strategic Advisory.
       
-      "${rawInput}"
+      USER INPUT: "${rawInput}"
       
-      Return a structured clinical evaluation.`,
+      INSTRUCTION: Provide the analysis in simple, easy-to-understand terms common in the Mumbai/global redevelopment industry. 
+      Use words like: Society Members, Managing Committee, PMC, Developer, Corpus Fund, Displacement Rent, IOD/CC, Agreement, and Final Handover.
+      Avoid overly academic or corporate jargon. Focus on structural "health" of the project's consensus and planning.`,
       config: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -297,7 +301,6 @@ export async function evaluateCase(rawInput: string, userId: string): Promise<st
     });
 
     return caseId;
-
   } catch (error) {
     // If AI fails, log issue but keep initial document in "evaluating" state
     await addDoc(activityRef, {
@@ -309,4 +312,28 @@ export async function evaluateCase(rawInput: string, userId: string): Promise<st
     console.error("AI processing failed:", error);
     throw error;
   }
+}
+
+/**
+ * Fetches a single case by ID with its layers and signals.
+ */
+export async function getCaseData(caseId: string) {
+  const caseRef = doc(db, "cases", caseId);
+  const layersRef = doc(db, "case_layers", caseId);
+  const signalsRef = doc(db, "case_signals", caseId);
+  
+  const [caseSnap, layersSnap, signalsSnap] = await Promise.all([
+    getDoc(caseRef),
+    getDoc(layersRef),
+    getDoc(signalsRef)
+  ]);
+  
+  if (!caseSnap.exists()) return null;
+  
+  const data = caseSnap.data();
+  return {
+    ...data,
+    layers: layersSnap.exists() ? layersSnap.data() : null,
+    signals: signalsSnap.exists() ? signalsSnap.data().signals : []
+  };
 }

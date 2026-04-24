@@ -4,9 +4,10 @@
  */
 
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronRight, LayoutGrid, ShieldCheck, Users, Target, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ChevronRight, LayoutGrid, ShieldCheck, Users, Target, CheckCircle2, Search, MessageSquare, AlertTriangle, Layers } from 'lucide-react';
 import { Page } from '../types';
 import Logo from '../components/Logo';
+import { REDEVELOPMENT_STAGES } from '../constants';
 
 interface HomeViewProps {
   onNavigate: (page: Page) => void;
@@ -27,7 +28,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           >
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16 md:mb-24">
               <div className="max-w-4xl">
-                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-gold mb-6 block">Institutional Advisory</span>
+                <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-6 block tracking-widest font-sans">Expert Project Advice</span>
                 <h1 className="font-serif italic font-light text-6xl sm:text-7xl md:text-[140px] leading-[0.85] tracking-tight text-ink">
                   Redevelopment <br />
                   <span className="text-gold not-italic font-display font-bold">Decisions</span>
@@ -35,29 +36,29 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               </div>
               <div className="md:w-px h-px md:h-32 bg-line" />
               <div className="max-w-sm">
-                <p className="text-lg font-light text-ink/60 leading-relaxed uppercase tracking-wider italic">
-                  Structured before execution. <br />Aligning stakeholders across the decision layer.
+                <p className="text-lg font-light text-ink/90 leading-relaxed uppercase tracking-wider italic">
+                  Structured before execution. <br />Aligning members across the decision layer.
                 </p>
               </div>
             </div>
             
             <div className="grid md:grid-cols-12 gap-12 items-end">
               <div className="md:col-span-8">
-                <p className="text-xl md:text-3xl font-light text-ink/80 leading-[1.4] mb-12">
-                  We work with societies, PMCs, and developers to bring clinical clarity to redevelopment—aligning expectations through the <span className="font-bold text-ink border-b-2 border-gold pb-1 px-1">ASSURE™ Protocol</span>.
+                <p className="text-xl md:text-3xl font-light text-ink/90 leading-[1.4] mb-12">
+                  We work with societies and developers to bring clear logic to redevelopment—aligning goals through the <span className="font-bold text-ink border-b-2 border-gold pb-1 px-1">ASSURE™ Protocol</span>.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6">
                   <button 
-                    onClick={() => onNavigate('contact')}
-                    className="bg-ink text-paper px-10 py-5 text-[10px] uppercase tracking-[0.4em] font-black hover:bg-gold hover:text-ink transition-all hover:scale-105 active:scale-95 shadow-xl"
+                    onClick={() => onNavigate('situation')}
+                    className="bg-zinc-950 text-paper px-12 py-6 text-xs uppercase tracking-[0.5em] font-bold hover:bg-gold hover:text-zinc-950 transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.2)] font-sans"
                   >
-                    Evaluate Your Situation
+                    Check Your Case
                   </button>
                   <button 
                     onClick={() => onNavigate('assure')}
-                    className="border border-ink/20 px-10 py-5 text-[10px] uppercase tracking-[0.4em] font-black hover:border-gold hover:text-gold transition-all"
+                    className="border border-zinc-950/20 px-12 py-6 text-xs uppercase tracking-[0.5em] font-bold hover:border-gold hover:text-gold transition-all font-sans"
                   >
-                    The ASSURE™ System
+                    The ASSURE™ Protocol
                   </button>
                 </div>
               </div>
@@ -79,15 +80,15 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-center justify-between gap-12">
              {[
-               { l: "Stakeholder Alignment", v: "Verified" },
+               { l: "Member Alignment", v: "Verified" },
                { l: "Decision Structure", v: "Standardized" },
                { l: "Risk Control", v: "Pre-Execution" },
                { l: "Alignment Loss", v: "0.0%" }
              ].map((stat, i) => (
-               <div key={i} className="flex flex-col">
-                 <span className="text-[10px] uppercase tracking-[0.3em] font-black text-ink/40 mb-2">{stat.l}</span>
-                 <span className="font-display text-2xl font-bold tracking-tighter text-gold italic uppercase">{stat.v}</span>
-               </div>
+                <div key={i} className="flex flex-col">
+                  <span className="text-xs uppercase tracking-[0.3em] font-bold text-ink/70 mb-2 font-sans">{stat.l}</span>
+                  <span className="font-display text-2xl font-bold tracking-tighter text-gold italic uppercase">{stat.v}</span>
+                </div>
              ))}
           </div>
         </div>
@@ -99,24 +100,29 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-20">
             <div className="lg:col-span-12 mb-12">
-               <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-8 block">Project Instability Protocol</span>
+               <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans tracking-widest">Project Health Check</span>
                <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-[1] tracking-tight max-w-4xl">
-                 Most projects do not fail in execution. <br />
-                 <span className="text-paper not-italic uppercase font-display font-bold">They become unstable earlier.</span>
+                  Most projects do not fail in construction. <br />
+                  <span className="text-paper not-italic uppercase font-display font-bold">They become unstable earlier.</span>
                </h2>
             </div>
             
             <div className="lg:col-span-8">
               <div className="grid md:grid-cols-2 gap-px bg-paper/10 border border-paper/10">
                 {[
-                  "Multiple stakeholders with different expectations",
-                  "Decisions being revisited or changing repeatedly",
-                  "Lack of clarity on legal or financial structure",
-                  "Execution beginning without full agreement"
+                  { t: "Members are not on the same page", r: "situation" },
+                  { t: "Decisions are changing repeatedly", r: "situation" },
+                  { t: "Developer left or project stalled > 6 months", r: "shield" },
+                  { t: "Confusing offers & lack of trust", r: "shield" }
                 ].map((item, i) => (
-                  <div key={i} className="bg-ink p-10 flex flex-col justify-between group hover:bg-paper hover:text-ink transition-all cursor-crosshair">
-                    <span className="text-gold font-display font-black text-xs mb-8">0{i+1} — TRIGGER</span>
-                    <p className="text-xl font-light leading-relaxed">{item}</p>
+                  <div 
+                    key={i} 
+                    onClick={() => onNavigate(item.r as Page)}
+                    className="bg-ink p-10 flex flex-col justify-between group hover:bg-paper hover:text-ink transition-all cursor-crosshair h-48"
+                  >
+                    <span className="text-gold font-display font-bold text-xs mb-8 uppercase tracking-widest font-sans">{item.r === 'shield' ? 'RECOVERY' : 'TRIGGER'} 0{i+1}</span>
+                    <p className="text-xl font-light leading-relaxed">{item.t}</p>
+                    <ArrowRight className="w-4 h-4 mt-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all text-gold" />
                   </div>
                 ))}
               </div>
@@ -124,15 +130,15 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
             <div className="lg:col-span-4 flex flex-col justify-center">
               <div className="border-t border-gold pb-12 pt-8">
-                <p className="text-sm font-bold tracking-[0.2em] uppercase text-gold mb-6 italic">Evaluation:</p>
-                <p className="text-2xl font-light text-paper/70 leading-relaxed mb-8">
-                  These symptoms indicate the absence of a <span className="text-paper font-medium">structured decision layer</span>.
+                <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-6 italic font-sans">Evaluation:</p>
+                <p className="text-2xl font-light text-paper/90 leading-relaxed mb-8">
+                  These signs indicate the absence of a <span className="text-paper font-medium">structured decision setup</span>.
                 </p>
                 <button 
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => onNavigate('situation')}
                   className="group flex items-center gap-4 text-paper hover:text-gold transition-colors"
                 >
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-black">Begin Clinical Mapping</span>
+                  <span className="text-xs uppercase tracking-[0.3em] font-bold font-sans">Begin Expert Mapping</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </button>
               </div>
@@ -146,22 +152,22 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-20">
             <div className="lg:col-span-12 mb-20 text-center">
-              <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-6 uppercase">Systemic Failures</h2>
-              <p className="text-[10px] uppercase tracking-[0.5em] font-black text-gold">Root Cause Analysis</p>
+              <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-6 uppercase">Common Problems</h2>
+              <p className="text-xs uppercase tracking-[0.5em] font-bold text-gold font-sans">Why Projects Get Stuck</p>
             </div>
             
             <div className="lg:col-span-10 lg:offset-1 grid md:grid-cols-2 gap-12">
                {[
-                 { t: "Alignment is assumed, not verified", d: "Agreement often masks underlying stakeholder dissent that surfaces at critical milestones." },
-                 { t: "Information Gap Protocols", d: "Decisions are forced through before data is structured or interpreted with precision." },
-                 { t: "Risk Blindness", d: "Structural risks are identified at the cost-heavy execution phase rather than the decision phase." },
-                 { t: "Readiness Failure", d: "The project moves forward on a timeline that ignores the structural stability of choices." }
+                 { t: "Members are not on the same page", d: "Societies often sign agreements without resolving internal disagreements among members." },
+                 { t: "Lack of clear information", d: "Decisions are often taken in a hurry without understanding the full legal or financial impact." },
+                 { t: "Hidden risks in the project", d: "Big problems are usually discovered late, when the building is already being demolished." },
+                 { t: "Pushing for speed over safety", d: "The project is rushed forward without checking if the foundation of the deal is actually solid." }
                ].map((item, i) => (
                  <div key={i} className="flex gap-8 group">
-                   <span className="font-serif italic text-4xl text-gold opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</span>
+                   <span className="font-serif italic text-4xl text-gold opacity-70 group-hover:opacity-100 transition-opacity">0{i+1}</span>
                    <div>
                      <h3 className="text-2xl font-bold font-display mb-4 tracking-tight">{item.t}</h3>
-                     <p className="text-ink/60 leading-relaxed font-light">{item.d}</p>
+                     <p className="text-ink/80 leading-relaxed font-light">{item.d}</p>
                    </div>
                  </div>
                ))}
@@ -175,20 +181,20 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
              <div>
-                <span className="text-gold uppercase tracking-[0.4em] font-black text-[10px] mb-8 block">Positioning</span>
+                <span className="text-gold uppercase tracking-[0.4em] font-bold text-xs mb-8 block font-sans">Our Position</span>
                 <h2 className="font-serif italic font-light text-5xl md:text-8xl leading-none mb-12">
                   The <span className="text-paper not-italic font-display font-bold">Decision</span> Layer.
                 </h2>
                 <div className="space-y-6 text-xl font-light text-paper/70">
                   <p>Bluexis™ does not replace PMCs, legal advisors, or developers.</p>
-                  <p className="text-gold italic border-l border-gold pl-6 py-2 uppercase tracking-[0.2em] font-bold text-xs">It secures them.</p>
+                  <p className="text-gold italic border-l border-gold pl-6 py-2 uppercase tracking-[0.2em] font-bold text-xs">It supports them.</p>
                   <p>By implementing a structured decision framework, we ensure that every party works from a foundation of verified alignment and controlled risk.</p>
                 </div>
              </div>
 
              <div className="bg-paper p-12 md:p-20 text-ink shadow-2xl relative">
                 <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-gold -translate-x-[-10px] -translate-y-[-10px] pointer-events-none" />
-                <h3 className="text-[10px] uppercase tracking-[0.4em] font-black text-gold mb-16 block text-center">Structural Invariants</h3>
+                <h3 className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-16 block text-center font-sans">Core Rules</h3>
                 <div className="space-y-12">
                    {[
                      { t: "Clarity before commitment", l: "Alignment" },
@@ -207,11 +213,37 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         </div>
       </section>
 
+      {/* governance preview */}
+      <section className="py-32 border-b border-line bg-paper">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-ink">
+              <div className="flex items-center gap-8">
+                 <div className="w-16 h-16 border border-line flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-8 h-8 text-gold" />
+                 </div>
+                 <div>
+                    <h3 className="font-display font-bold text-2xl uppercase tracking-tight">Project Management</h3>
+                    <p className="text-sm font-light text-ink/60 uppercase tracking-widest italic leading-relaxed">Member Accountability & Ethical Guidelines</p>
+                 </div>
+              </div>
+              <button 
+                onClick={() => onNavigate('governance')}
+                className="group flex items-center gap-4 text-ink hover:text-gold transition-colors shrink-0"
+              >
+                <span className="text-xs uppercase tracking-[0.4em] font-bold font-sans">View Guidelines</span>
+                <div className="w-12 h-12 border border-line rounded-full flex items-center justify-center group-hover:bg-gold group-hover:text-ink transition-all">
+                   <ChevronRight className="w-5 h-5" />
+                 </div>
+              </button>
+           </div>
+        </div>
+      </section>
+
       {/* assure */}
       <section id="assure-prev" className="py-40 bg-[#FCFAF7] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-24">
-             <span className="text-[10px] uppercase tracking-[0.4em] font-black text-gold mb-8 block">Protocol Overview</span>
+             <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-8 block font-sans tracking-widest">Protocol Overview</span>
              <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12">
                ASSURE™ System <br />
                <span className="font-serif italic font-light italic-text text-gold">Architecture.</span>
@@ -222,67 +254,71 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
             {[
               { 
-                title: "Alignment Layer", 
-                text: "Establishing a shared baseline across stakeholders through clinical expectation mapping." 
+                title: "Planning Layer", 
+                text: "Establishing shared goals across members through clear expectation mapping." 
               },
               { 
                 title: "Risk Layer", 
-                text: "Detecting and resolving structural vulnerabilities before execution begins." 
+                text: "Detecting and resolving project risks before construction begins." 
               },
               { 
                 title: "Decision Layer", 
-                text: "Mathematical evaluation of alternatives to avoid interest-driven failures." 
+                text: "Smart evaluation of developer offers to avoid biased failures." 
               },
               { 
-                title: "Execution Layer", 
-                text: "Continuous validation of readiness and alignment during implementation." 
+                title: "Building Layer", 
+                text: "Continuous check of build quality and alignment during implementation." 
               }
             ].map((layer, i) => (
               <div key={i} className="bg-[#FCFAF7] p-12 group hover:bg-ink hover:text-paper transition-all duration-500">
-                <span className="text-gold font-display font-black text-[10px] mb-12 block group-hover:scale-110 transition-transform origin-left tracking-widest">0{i+1} — LAYER</span>
+                <span className="text-gold font-display font-bold text-xs mb-12 block group-hover:scale-110 transition-transform origin-left tracking-widest font-sans uppercase">0{i+1} — LAYER</span>
                 <h3 className="text-2xl font-bold mb-6 font-display group-hover:text-gold transition-colors">{layer.title}</h3>
-                <p className="text-sm font-light leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{layer.text}</p>
+                <p className="text-sm font-light leading-relaxed opacity-85 group-hover:opacity-100 transition-opacity">{layer.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* process */}
+          {/* process */}
       <section id="process" className="py-24 md:py-40 border-b border-line">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-24">
              <div className="lg:col-span-12 mb-12">
-               <span className="text-[10px] uppercase tracking-[0.4em] font-black text-gold mb-6 block">The Protocol</span>
-               <h2 className="font-serif italic font-light text-5xl md:text-7xl leading-none tracking-tight">Engagement Lifecycle.</h2>
+               <span className="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-6 block font-sans tracking-widest">The Protocol</span>
+               <h2 className="font-serif italic font-light text-5xl md:text-7xl leading-none tracking-tight">Expert Management model.</h2>
              </div>
              
              <div className="lg:col-span-8">
-               <div className="space-y-4">
-                 {[
-                   "Situation Evaluation & Clinical Review",
-                   "Stakeholder Positional Mapping",
-                   "Decision Modeling & Risk Structuring",
-                   "ASSURE™ System Implementation"
-                 ].map((step, i) => (
-                   <div key={i} className="flex items-center justify-between py-10 border-b border-line group hover:px-8 transition-all cursor-crosshair">
-                      <div className="flex items-center gap-12">
-                        <span className="font-display text-sm font-black text-gold opacity-30 group-hover:opacity-100 transition-opacity">PHASE 0{i+1}</span>
-                        <span className="text-2xl md:text-4xl font-light text-ink/80 group-hover:text-ink transition-colors">{step}</span>
-                      </div>
-                      <ChevronRight className="w-8 h-8 text-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
-                   </div>
-                 ))}
+               <div className="grid md:grid-cols-2 gap-8">
+                  {REDEVELOPMENT_STAGES.slice(0, 4).map((stage, i) => (
+                    <div key={i} className="flex flex-col p-8 border border-line group hover:border-gold transition-all">
+                       <span className="font-display text-xs font-bold text-gold opacity-30 group-hover:opacity-100 transition-opacity mb-6 uppercase tracking-widest font-sans">Phase 0{i+1}</span>
+                       <h3 className="text-xl font-bold uppercase tracking-tight mb-4">{stage.label}</h3>
+                       <p className="text-xs font-light text-ink/85 italic leading-relaxed">{stage.desc}</p>
+                    </div>
+                  ))}
+               </div>
+               <div className="mt-8 p-10 border border-gold/20 bg-gold/5 flex items-center justify-between group cursor-pointer" onClick={() => onNavigate('assure')}>
+                  <div>
+                    <h4 className="text-sm font-bold uppercase tracking-widest mb-2 font-sans">View Full 9-Stage Model</h4>
+                    <p className="text-xs font-light italic text-ink/60 font-serif">Explore the complete project safety protocol.</p>
+                  </div>
+                  <ArrowRight className="w-6 h-6 text-gold group-hover:translate-x-2 transition-transform" />
                </div>
              </div>
-             <div className="lg:col-span-4 self-end">
-                <div className="p-12 bg-ink text-paper relative">
+             <div className="lg:col-span-4 flex flex-col gap-8">
+                <div className="p-12 bg-ink text-paper relative flex-1">
                    <div className="absolute top-0 right-0 p-4">
                      <Logo type="monogram" className="w-10 h-10 opacity-40" />
                    </div>
-                   <h4 className="text-[10px] uppercase tracking-[0.3em] font-black text-gold mb-6">Prerequisite</h4>
-                   <p className="text-xl font-light leading-relaxed mb-8 italic text-paper/80">Every Bluexis™ case must pass the clinical alignment filter before engagement proceeds.</p>
+                   <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gold mb-6 font-sans">System Rules</h4>
+                   <p className="text-xl font-light leading-relaxed mb-8 italic text-paper/80">Every case must pass the expert alignment check before we move forward.</p>
                    <div className="h-[2px] bg-gold w-12" />
+                </div>
+                <div className="p-12 border border-line flex flex-col justify-center items-center text-center">
+                   <ShieldCheck className="w-12 h-12 text-gold mb-6 opacity-20" />
+                   <p className="text-xs uppercase tracking-[0.5em] font-bold opacity-40 font-sans">Verified Rules</p>
                 </div>
              </div>
           </div>
@@ -307,14 +343,14 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             <div className="flex flex-col items-center gap-12">
               <div className="flex flex-col md:flex-row gap-8">
                 <button 
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => onNavigate('situation')}
                   className="bg-paper text-ink px-16 py-6 text-xs uppercase tracking-[0.5em] font-black hover:bg-gold transition-all hover:scale-110 shadow-2xl relative group"
                 >
                   <span className="relative z-10">Log Current Situation</span>
                   <div className="absolute inset-0 bg-gold translate-x-1 translate-y-1 -z-1 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />
                 </button>
               </div>
-              <p className="text-[10px] uppercase tracking-[0.3em] font-black text-paper/30 italic uppercase">Bluexis™ Strategic Advisory — London — Mumbai — Dubai</p>
+              <p className="text-xs uppercase tracking-[0.3em] font-bold text-paper/30 italic uppercase font-sans">Bluexis™ Strategic Advisory — London — Mumbai — Dubai</p>
             </div>
           </motion.div>
         </div>
