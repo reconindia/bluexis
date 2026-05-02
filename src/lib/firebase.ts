@@ -4,7 +4,14 @@
  */
 
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, User as FirebaseUser } from 'firebase/auth';
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  setPersistence, 
+  browserLocalPersistence,
+  User as FirebaseUser 
+} from 'firebase/auth';
 import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
@@ -14,7 +21,24 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 // Select the specific database ID provisioned
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 export const auth = getAuth(app);
+
+// Explicitly set persistence to local to ensure session is kept across refreshes/iframes
+setPersistence(auth, browserLocalPersistence).catch(err => {
+  console.error("Persistence Error:", err);
+});
+
 export const googleProvider = new GoogleAuthProvider();
+// Force re-selection of account if needed
+googleProvider.setCustomParameters({
+  prompt: 'select_account'
+});
+
+/**
+ * NOTE: For Google Authentication to work in this environment (iframe):
+ * 1. The domain of this app must be added to 'Authorized Domains' in Firebase Console -> Authentication -> Settings.
+ * 2. If popups are blocked, use the 'Open in New Tab' option provided in the UI.
+ * 3. Ensure 'Google' sign-in provider is enabled in Firebase Console.
+ */
 
 /**
  * Validates connection to Firestore.
@@ -76,6 +100,9 @@ export function handleFirestoreError(error: any, operation: FirestoreErrorInfo['
 }
 
 export async function signInWithGoogle() {
+  /**
+   * IMPORTANT: Ensure 'bluexis.com' is added to Authorized Domains in Firebase Console.
+   */
   try {
     const result = await signInWithPopup(auth, googleProvider);
     return result.user;

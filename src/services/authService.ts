@@ -3,24 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { 
-  signInWithPopup, 
-} from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { auth, db, googleProvider } from '../lib/firebase';
-
-/**
- * Handles Google Authentication
- */
-export async function handleGoogleLogin() {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    return result.user;
-  } catch (error: any) {
-    console.error("Google Auth Error:", error);
-    throw error;
-  }
-}
+import { auth, db } from '../lib/firebase';
 
 /**
  * Updates user role in Firestore

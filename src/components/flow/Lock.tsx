@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, MessageCircle, Mail, Lock as LockIcon } from 'lucide-react';
-import { handleGoogleLogin } from '../../services/authService';
+import { ShieldCheck, MessageCircle, Mail, Lock as LockIcon, Loader2 } from 'lucide-react';
+import { signInWithGoogle } from '../../lib/firebase';
 
 export default function Lock() {
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleLogin = async () => {
+    setIsLoggingIn(true);
+    setError(null);
+    try {
+      await signInWithGoogle();
+    } catch (err: any) {
+      console.error(err);
+      if (err.code === 'auth/unauthorized-domain') {
+        setError("Domain not authorized. Please add 'bluexis.com' and the current app URL to Authorized Domains in Firebase Console.");
+      } else {
+        setError("Login failed. Try opening in a new tab.");
+      }
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const openInNewTab = () => {
+    window.open(window.location.href, '_blank');
+  };
+
   return (
     <motion.div 
       key="conversion"
@@ -23,12 +47,26 @@ export default function Lock() {
       
       <div className="space-y-4 max-w-sm mx-auto w-full">
         <button 
-          onClick={handleGoogleLogin}
-          className="w-full bg-white text-black py-5 px-6 font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-gold transition-all flex items-center justify-center gap-4 group"
+          onClick={handleLogin}
+          disabled={isLoggingIn}
+          className="w-full bg-white text-black py-5 px-6 font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-gold transition-all flex items-center justify-center gap-4 group disabled:opacity-50"
         >
-          <Mail className="w-4 h-4" />
-          Verify via Google
+          {isLoggingIn ? <Loader2 className="w-4 h-4 animate-spin text-black" /> : <Mail className="w-4 h-4" />}
+          {isLoggingIn ? "Verifying Domain..." : "Verify via Google"}
         </button>
+
+        {error && (
+          <p className="text-[10px] text-red-500 uppercase tracking-widest font-bold">{error}</p>
+        )}
+
+        <div className="pt-4">
+           <button 
+            onClick={openInNewTab}
+            className="text-[9px] text-zinc-500 uppercase tracking-widest hover:text-gold transition-colors"
+           >
+             Open in New Tab
+           </button>
+        </div>
 
         <button 
           className="w-full border border-zinc-900 bg-zinc-900/10 text-zinc-700 py-5 px-6 font-bold uppercase tracking-[0.4em] text-[10px] flex items-center justify-center gap-4 opacity-50 cursor-not-allowed"

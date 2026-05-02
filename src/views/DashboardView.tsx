@@ -37,6 +37,9 @@ export default function DashboardView({ onNavigate }: { onNavigate?: (page: Page
   const [cases, setCases] = useState<any[]>([]);
   const [selectedCase, setSelectedCase] = useState<any>(null);
 
+  const [errorStatus, setErrorStatus] = useState<string | null>(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
       setUser(currUser);
@@ -70,11 +73,29 @@ export default function DashboardView({ onNavigate }: { onNavigate?: (page: Page
   }, [user]);
 
   const handleLogin = async () => {
+    setIsLoggingIn(true);
+    setErrorStatus(null);
     try {
-      await signInWithGoogle();
-    } catch (error) {
+      const result = await signInWithGoogle();
+      if (!result) {
+        // User closed the popup, don't show error
+        setIsLoggingIn(false);
+        return;
+      }
+    } catch (error: any) {
       console.error(error);
+      if (error.code === 'auth/unauthorized-domain') {
+        setErrorStatus("This domain is not authorized in Firebase. Please add 'bluexis.com', 'ais-dev-r6uu63fndyadkar4duxawv-301462078022.asia-southeast1.run.app', and your Share URL to 'Authorized Domains' in your Firebase Console (Authentication > Settings).");
+      } else {
+        setErrorStatus(error.message || "Authentication failed. Please check your connection or try opening in a new tab.");
+      }
+    } finally {
+      setIsLoggingIn(false);
     }
+  };
+
+  const openInNewTab = () => {
+    window.open(window.location.href, '_blank');
   };
 
   const handleLogout = () => signOut(auth);
@@ -105,11 +126,35 @@ export default function DashboardView({ onNavigate }: { onNavigate?: (page: Page
           </div>
           <button 
             onClick={handleLogin}
-            className="w-full bg-ink text-paper py-5 text-xs uppercase tracking-[0.4em] font-bold hover:bg-gold hover:text-ink transition-all flex items-center justify-center gap-3 group font-sans"
+            disabled={isLoggingIn}
+            className="w-full bg-ink text-paper py-5 text-xs uppercase tracking-[0.4em] font-bold hover:bg-gold hover:text-ink transition-all flex items-center justify-center gap-3 group font-sans disabled:opacity-50 disabled:cursor-wait"
           >
-            Sign In Securely
-            <ShieldCheck className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            {isLoggingIn ? "Verifying..." : "Sign In Securely"}
+            {isLoggingIn ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4 group-hover:scale-110 transition-transform" />}
           </button>
+
+          {errorStatus && (
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }}
+              className="mt-6 p-4 bg-red-50 border border-red-100 text-red-800 text-[10px] uppercase tracking-wider font-bold text-center"
+            >
+              {errorStatus}
+            </motion.div>
+          )}
+
+          <div className="mt-12 pt-8 border-t border-line text-center">
+            <p className="text-[10px] text-ink/40 uppercase tracking-widest leading-relaxed mb-4 font-sans">
+              Having issues with Google Auth in the iframe?
+            </p>
+            <button 
+              onClick={openInNewTab}
+              className="text-[10px] text-gold-dark font-bold uppercase tracking-[0.2em] border-b border-gold-dark/20 hover:border-gold-dark transition-all"
+            >
+              Open Site in New Tab
+            </button>
+          </div>
+
           <p className="text-xs text-ink/50 text-center mt-8 uppercase tracking-[0.2em] leading-relaxed font-sans">
             Secure login protocols recommended for all project partners.
           </p>
